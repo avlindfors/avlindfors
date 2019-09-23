@@ -101,10 +101,10 @@ const Card = styled.div`
   max-width: 300px;
 `
 const CardTitle = styled.h5`
-  color: #20293e;
+  color: #343E56;
   font-family: "Poppins", sans-serif;
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.06em;
   margin-bottom: 36px;
 `

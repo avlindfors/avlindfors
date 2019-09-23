@@ -4,6 +4,8 @@ import styled from "@emotion/styled"
 import { maxWidthContainer } from "../../styles/theme"
 import { colors } from "../../styles/variables"
 
+import NewsLetter from '../NewsLetter'
+
 import LogoWithText from "../../assets/images/avl-logo-text.inline.svg"
 
 import EmailIcon from "../../assets/icons/email.inline.svg"
@@ -15,6 +17,8 @@ import TwitterIcon from "../../assets/icons/twitter.inline.svg"
 import LinkedinIcon from "../../assets/icons/linkedin.inline.svg"
 
 export default () => (
+  <>
+  <NewsLetter />
   <Wrapper>
     <Footer>
       <LogoSection>
@@ -120,6 +124,7 @@ export default () => (
       </SocialFooterContent>
     </FullWidthSocialFooter>
   </Wrapper>
+  </>
 )
 
 const Wrapper = styled.footer`
@@ -254,7 +259,7 @@ const SocialIcon = styled.div`
   svg {
     height: 38px;
     width: 38px;
-    fill: #d7daf4;
+    fill: #f0f1fa;
   }
   &:not(:last-of-type) {
     margin-right: 32px;

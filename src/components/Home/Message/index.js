@@ -33,7 +33,7 @@ export default () => {
       <Message>
         <Flex direction="row" justifyContent="space-between">
           <LetterImage />
-          <MessageForm onSubmit={handleSubmit}>
+          <MessageForm name="message" onSubmit={handleSubmit}>
             <FormTitle>Send me a message</FormTitle>
             <FormControl>
               <FormLabel htmlFor="name">Name</FormLabel>
@@ -55,7 +55,7 @@ export default () => {
               ></FormInput>
             </FormControl>
             <FormSubmit>
-              <PrimaryButton type="submit">SEND</PrimaryButton>
+              <PrimaryButton type="submit">Send</PrimaryButton>
             </FormSubmit>
           </MessageForm>
         </Flex>
@@ -197,7 +197,7 @@ const FormSubmit = styled.div``
 const UnderTheHoodSection = styled.section`
   padding-bottom: 0;
   z-index: 2;
-  margin-bottom: 120px;
+  margin-bottom: 140px;
   margin-top:20px;
 `
 const UnderTheHoodTitle = styled(H6)`

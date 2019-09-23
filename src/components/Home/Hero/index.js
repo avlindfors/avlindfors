@@ -28,7 +28,7 @@ export default () => {
           consectetur adipiscing elit, sed do eiusmo.
         </BioText>
         <RightAligned>
-          <HintLink to="#">Say hi</HintLink>
+          <HintLink withMargin to="/#">Say hi</HintLink>
           <PrimaryButton type="button">Read more</PrimaryButton>
         </RightAligned>
       </TextSection>

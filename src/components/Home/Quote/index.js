@@ -50,8 +50,8 @@ const Bold = styled.span`
   font-weight: 600;
 `
 const BonusContainer = styled.footer`
-  background: #E8EEFA;
-  color: #4E566F;
+  background: #e8eefa;
+  color: #4e566f;
   font-size: 18px;
   height: 110px;
   display: flex;
@@ -76,22 +76,23 @@ const CenteredButtons = styled.div`
 const DarkHintLink = styled(HintLink)`
   color: #666a8a;
   margin-top: 24px;
+  text-align: center;
 `
 
 const Quote = styled.section`
   background: #f6f6fd;
   z-index: 1;
-  position:relative;
+  position: relative;
   &::before {
-    position:absolute;
-    content:'';
-    height:600px;
-    width:400px;
-    background:url(${blobImage});
-    background-size:auto;
-    background-repeat:no-repeat;
-    right:-20px;
-    top:150px;
+    position: absolute;
+    content: "";
+    height: 600px;
+    width: 400px;
+    background: url(${blobImage});
+    background-size: auto;
+    background-repeat: no-repeat;
+    right: -20px;
+    top: 150px;
   }
 `
 
@@ -100,7 +101,6 @@ const MaxWidthContainer = styled.div`
   padding-top: 110px;
   display: flex;
   flex-direction: column;
-
 `
 
 const CenteredQuote = styled(H1)`
@@ -143,5 +143,5 @@ const CenteredCopyText = styled.p`
   letter-spacing: 0.06em;
   margin-bottom: 60px;
 
-  z-index:1
+  z-index: 1;
 `
