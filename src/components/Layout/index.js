@@ -10,7 +10,8 @@ import Header from "./header"
 import Footer from "./footer"
 
 const Layout = ({ children }) => {
-  useEffect(() => {
+
+  /* useEffect(() => {
     axios
       .get("/api/likes")
       .then(({ data }) => data)
@@ -21,7 +22,7 @@ const Layout = ({ children }) => {
         console.log(err)
       })
   });
-
+ */
   return (
     <>
       <Global styles={globalStyles} />
