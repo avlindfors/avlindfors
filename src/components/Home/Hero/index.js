@@ -1,11 +1,12 @@
 import React from "react"
 import styled from "@emotion/styled"
 import { Link } from "gatsby"
-
+import {HintLink} from '../../../styles/shared';
 import Search from "../../../assets/images/undraw-searching.inline.svg"
 import ArrowIcon from "../../../assets/icons/arrow.inline.svg"
 
-import { H1 } from "../../../styles/theme"
+import PrimaryButton from '../../PrimaryButton';
+import { H1, maxWidthContainer } from "../../../styles/theme"
 import {
   colors,
   borderRadius,
@@ -16,7 +17,7 @@ export default () => {
   return (
     <Hero>
       <TextSection>
-        <H1>Hi! I'm Alexander</H1>
+        <H1>Hi! I'm Alex</H1>
         <Tagline>
           I'm a software engineer with a passion for Front End development and
           Design.
@@ -43,6 +44,7 @@ export default () => {
 }
 
 const Hero = styled.section`
+  ${maxWidthContainer};
   padding-top: 50px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -87,7 +89,7 @@ const TextSection = styled.section`
 
 const Tagline = styled.p`
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 0.06em;
   margin-bottom: 18px;
 `
@@ -107,37 +109,6 @@ const RightAligned = styled.div`
   align-items: center;
 `
 
-const HintLink = styled(Link)`
-  font-family: "Poppins", sans-serif;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  margin-left: 36px;
-  &:hover {
-    text-decoration: underline;
-  }
-`
-const PrimaryButton = styled.button`
-  outline: none;
-  border: none;
-  font-family: "Poppins", sans-serif;
-  letter-spacing: 0.1em;
-  font-weight: 600;
-  background: ${colors.accent.main};
-  font-size: 18px;
-
-  border-radius: ${borderRadius};
-  width: 155px;
-  height: 60px;
-  cursor: pointer;
-  transition: ${animationDurations.normal} ease;
-  &:hover {
-    background: ${colors.accent.dark};
-  }
-`
-
 const ImageSection = styled.section`
   grid-column: 2 / span 1;
   grid-row: 1 / span 1;
@@ -152,7 +123,8 @@ const MoreSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 124px;
+  margin-bottom:80px;
 `
 
 const MoreText = styled.p`

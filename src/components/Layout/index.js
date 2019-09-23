@@ -23,19 +23,13 @@ const Layout = ({ children }) => {
   });
 
   return (
-    <Wrapper>
+    <>
       <Global styles={globalStyles} />
       <Header />
-      <Content>{children}</Content>
+      <>{children}</>
       <Footer />
-    </Wrapper>
+    </>
   )
 }
-
-const Content = styled.main``
-const Wrapper = styled.div`
-  max-width: 1100px;
-  margin: 0 auto;
-`
 
 export default Layout

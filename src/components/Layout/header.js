@@ -7,6 +7,7 @@ import { Link } from "gatsby"
 
 import Logo from "../../assets/images/avl-logo.inline.svg"
 import { colors, animationDurations } from "../../styles/variables"
+import { maxWidthContainer } from "../../styles/theme"
 
 export default () => (
   <Header>
@@ -26,6 +27,7 @@ const SiteLogoAndLink = () => (
 )
 
 const Header = styled.header`
+  ${maxWidthContainer};
   height: 150px;
   display: flex;
   flex-direction: row;
@@ -46,7 +48,7 @@ const RightMarginItem = styled.li`
   :not(:last-of-type) {
     margin-right: 42px;
   }
-`;
+`
 
 const StyledNavLink = styled(Link)`
   font-family: "Poppins", sans-serif;
@@ -56,7 +58,7 @@ const StyledNavLink = styled(Link)`
   font-weight: 500;
   font-size: 18px;
   transition: ${animationDurations.fast} ease-in;
-  text-transform:uppercase;
+  text-transform: uppercase;
   :hover {
     color: ${colors.text.nav.hover};
   }

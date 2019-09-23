@@ -6,14 +6,17 @@ module.exports = {
   },
   proxy: {
     prefix: "/api",
-    url: "http://localhost:3000"
+    url: "http://localhost:3000",
   },
   plugins: [
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [`Poppins\:300,400,500,600,700`, `Source Sans Pro\:300,400,600,700`],
+        fonts: [
+          `poppins\:300,300i,400,400i,500,600,700`,
+          `source sans pro\:300,400,600,700`,
+        ],
         display: "swap",
       },
     },
@@ -21,9 +24,9 @@ module.exports = {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
-          include: /\.inline\.svg$/
-        }
-      }
+          include: /\.inline\.svg$/,
+        },
+      },
     },
     `gatsby-plugin-react-helmet`,
     {
@@ -34,7 +37,7 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`
+    `gatsby-plugin-sharp`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
