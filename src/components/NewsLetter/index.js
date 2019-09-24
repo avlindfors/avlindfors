@@ -54,7 +54,7 @@ const FloatingForm = styled.form`
   bottom: 40px;
   border-radius: ${borderRadius};
   box-shadow: 0 4px 12px #00000020, 0 6px 20px #0000000f;
-  padding: 48px 60px;
+  padding: 32px 60px;
 `
 
 const formText = css`
