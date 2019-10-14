@@ -8,12 +8,17 @@ import SEO from "../components/seo"
 import { maxWidthContainer } from "../styles/theme"
 import { SPACING } from "../styles/variables"
 
+import WorkImage from "../assets/images/undraw-programming.inline.svg"
+import EducationImage from "../assets/images/undraw-upload.inline.svg"
 export default () => (
   <Layout>
     <SEO title="Resume" />
-    <ResumeHeader />
     <ResumeWrapper>
+      <ResumeHeader />
       <ResumeSection>
+        <ImageWrapper>
+          <WorkImage />
+        </ImageWrapper>
         <ResumeSectionTitleContainer>
           <ResumeSectionTitle>Work</ResumeSectionTitle>
         </ResumeSectionTitleContainer>
@@ -57,6 +62,9 @@ export default () => (
         </ResumeSectionList>
       </ResumeSection>
       <ResumeSection>
+        <ImageWrapper>
+          <EducationImage />
+        </ImageWrapper>
         <ResumeSectionTitleContainer>
           <ResumeSectionTitle>Education</ResumeSectionTitle>
         </ResumeSectionTitleContainer>
@@ -79,7 +87,7 @@ export default () => (
             <ResumeSectionItemTitle>
               Academy of Language Arts
             </ResumeSectionItemTitle>
-            <ResumeSectionRole>Japanese School</ResumeSectionRole>
+            <ResumeSectionRole>Japanese Language School</ResumeSectionRole>
             <ResumeSectionDuration>10/2018 - 07/2019</ResumeSectionDuration>
             <ResumeSectionLocation>Tokyo, Japan</ResumeSectionLocation>
             <ResumeSectionBody>
@@ -108,6 +116,7 @@ const ResumeSectionInfo = styled.p`
   font-size: 18px;
   letter-spacing: 0.1em;
   color: #c1c3d9;
+  margin-bottom:${SPACING[1]};
 `
 const ResumeSectionRole = styled(ResumeSectionInfo)`
   font-weight: 600;
@@ -146,9 +155,7 @@ const ResumeSection = styled.section`
   ${maxWidthContainer};
   display: flex;
   flex-direction: column;
-  &:not(:last-of-type) {
-    margin-bottom: 60px;
-  }
+  margin-bottom: ${SPACING[7]};
 `
 
 const ResumeSectionTitleContainer = styled.div`
@@ -162,5 +169,8 @@ const ResumeSectionTitle = styled.h2`
   font-weight: 700;
   font-family: "Poppins", sans-serif;
   line-height: 1;
-  margin-bottom:${SPACING[4]};
+  margin-bottom: ${SPACING[4]};
+`
+const ImageWrapper = styled.div`
+  margin-bottom: ${SPACING[6]};
 `

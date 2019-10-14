@@ -24,6 +24,35 @@ export default () => (
         <LogoSection>
           <LogoWithText />
         </LogoSection>
+        <SocialSection>
+          <SocialIcon>
+            <a
+              href="https://www.linkedin.com/in/alexander-lindfors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <LinkedinIcon />
+            </a>
+          </SocialIcon>
+          <SocialIcon>
+            <a
+              href="https://www.github.com/alindfor"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GithubIcon />
+            </a>
+          </SocialIcon>
+          <SocialIcon>
+            <a
+              href="https://www.twitter.com/a_lindfors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <TwitterIcon />
+            </a>
+          </SocialIcon>
+        </SocialSection>
         <LinkSection>
           <ContactSection>
             <Address>
@@ -92,35 +121,6 @@ export default () => (
               Crafted lovingly with Gatsby, React and Node
             </ItalicDimText>
           </CopyrightNotice>
-          <SocialSection>
-            <SocialIcon>
-              <a
-                href="https://www.linkedin.com/in/alexander-lindfors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <LinkedinIcon />
-              </a>
-            </SocialIcon>
-            <SocialIcon>
-              <a
-                href="https://www.github.com/alindfor"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <GithubIcon />
-              </a>
-            </SocialIcon>
-            <SocialIcon>
-              <a
-                href="https://www.twitter.com/a_lindfors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <TwitterIcon />
-              </a>
-            </SocialIcon>
-          </SocialSection>
         </SocialFooterContent>
       </FullWidthSocialFooter>
     </Wrapper>
@@ -132,8 +132,7 @@ const Wrapper = styled.footer`
 `
 const Footer = styled.section`
   ${maxWidthContainer};
-  padding: ${SPACING[7]} ${SPACING[4]};
-  padding-bottom:${SPACING[7]};
+  padding: ${SPACING[6]} ${SPACING[4]};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -152,7 +151,7 @@ const SocialFooterContent = styled.div`
   padding: ${SPACING[5]} ${SPACING[4]};
 `
 const LogoSection = styled.div`
-  margin-bottom: ${SPACING[5]};
+  margin-bottom: ${SPACING[6]};
 `
 
 const LinkSection = styled.div`
@@ -231,14 +230,14 @@ const SocialFooterText = styled.p`
 const Copyright = styled(SocialFooterText)`
   ${FONTSIZE[3]};
   font-weight: 300;
-  margin-bottom: ${SPACING[3]}
+  margin-bottom: ${SPACING[3]};
 `
+
 const ItalicDimText = styled(SocialFooterText)`
   font-style: italic;
   ${FONTSIZE[2]};
   font-weight: 300;
   opacity: 0.9;
-  margin-bottom: ${SPACING[5]}
 `
 
 const Address = styled.address`
@@ -258,6 +257,7 @@ const CopyrightNotice = styled.div``
 const SocialSection = styled.div`
   display: flex;
   flex-direction: row;
+  margin-bottom: ${SPACING[5]};
 `
 
 const SocialIcon = styled.div`

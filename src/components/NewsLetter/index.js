@@ -63,7 +63,7 @@ const FloatingForm = styled.form`
   width: 650px;
   border-radius: ${borderRadius};
   box-shadow: 0 4px 12px #00000020, 0 6px 20px #0000000f;
-  padding: ${SPACING[7]} ${SPACING[4]};
+  padding: ${SPACING[6]} ${SPACING[4]};
 `
 
 const formText = css`
@@ -80,7 +80,7 @@ const FormTitle = styled.h1`
 const FormSubtitle = styled.p`
   ${formText};
   font-size: 16px;
-  margin-bottom: 12px;
+  margin-bottom: ${SPACING[4]};
 `
 const InputGroup = styled.div`
   margin-bottom: ${SPACING[4]};

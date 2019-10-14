@@ -3,7 +3,7 @@ import styled from "@emotion/styled"
 import { css } from "@emotion/core"
 import Avatar from "../../../assets/images/undraw-avatar.inline.svg"
 import { maxWidthContainer, headerShared } from "../../../styles/theme"
-import { FONTSIZE, SPACING, WEIGHTS } from "../../../styles/variables"
+import { FONTSIZE, SPACING, WEIGHTS, colors } from "../../../styles/variables"
 
 export default () => {
   return (
@@ -37,136 +37,31 @@ export default () => {
           </BasicSummary>
           <LanguageSummary>
             <SummaryDataTitle>Languages</SummaryDataTitle>
-            <LanguageList>
-              <LanguageItem>
-                <TableText>Swedish</TableText>
-                <TableText>Fluent</TableText>
-              </LanguageItem>
-              <LanguageItem>
-                <TableText>English</TableText>
-                <TableText>Fluent</TableText>
-              </LanguageItem>
-              <LanguageItem>
-                <TableText>Japanese</TableText>
-                <TableText>Conversational</TableText>
-              </LanguageItem>
-            </LanguageList>
+            <MarginBottomTableText>
+              Swedish, English, Japanese
+            </MarginBottomTableText>
           </LanguageSummary>
         </TopSummary>
         <section>
           <SummaryDataTitle>Toolkit</SummaryDataTitle>
-          <ToolkitList>
-            <ToolkitListItem>
-              <TableText>Web</TableText>
-              <SkillList>
-                <SkillItem>
-                  <TableText>React</TableText>
-                </SkillItem>
-                <SkillItem>
-                  <TableText>JavaScript</TableText>
-                </SkillItem>
-                <SkillItem>
-                  <TableText>HTML</TableText>
-                </SkillItem>
-                <SkillItem>
-                  <TableText>CSS</TableText>
-                </SkillItem>
-              </SkillList>
-            </ToolkitListItem>
-            <ToolkitListItem>
-              <TableText>Backend</TableText>
-              <SkillList>
-                <SkillItem>
-                  <TableText>Express</TableText>
-                </SkillItem>
-                <SkillItem>
-                  <TableText>Node</TableText>
-                </SkillItem>
-                <SkillItem>
-                  <TableText>Python</TableText>
-                </SkillItem>
-                <SkillItem>
-                  <TableText>Java</TableText>
-                </SkillItem>
-              </SkillList>
-            </ToolkitListItem>
-            <ToolkitListItem>
-              <TableText>Storage</TableText>
-              <SkillList>
-                <SkillItem>
-                  <TableText>MongoDB</TableText>
-                </SkillItem>
-                <SkillItem>
-                  <TableText>Firebase</TableText>
-                </SkillItem>
-                <SkillItem>
-                  <TableText>SQL</TableText>
-                </SkillItem>
-              </SkillList>
-            </ToolkitListItem>
-            <ToolkitListItem>
-              <TableText>Other</TableText>
-              <SkillList>
-                <SkillItem>
-                  <TableText>Docker</TableText>
-                </SkillItem>
-                <SkillItem>
-                  <TableText>GitHub</TableText>
-                </SkillItem>
-              </SkillList>
-            </ToolkitListItem>
-          </ToolkitList>
+          <MarginBottomTableText>
+            React, JavaScript, HTML, CSS, Node, Express, Java, Python
+          </MarginBottomTableText>
+          <MarginBottomTableText>
+            MongoDB, Firebase, SQL, Docker, GitHub, AWS
+          </MarginBottomTableText>
+          <AccentedMoreText>& more</AccentedMoreText>
         </section>
       </SummaryContainer>
     </ResumeHeader>
   )
 }
 
-const sectionUnderline = css`
-  &:not(:last-of-type) {
-    margin-bottom: ${SPACING[4]};
-  }
-  padding-bottom: ${SPACING[4]};
-  position: relative;
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    background: #444551;
-    opacity: 0.2;
-  }
-`
-const SkillList = styled.ul`
-  list-style-type: none;
-`
-const SkillItem = styled.li`
-  &:not(:last-of-type) {
-    margin-bottom: ${SPACING[3]};
-  }
-`
-
-const ToolkitListItem = styled.li`
-  list-style-type: none;
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  ${sectionUnderline};
-`
-const ToolkitList = styled.ul`
-  display: flex;
-  flex-direction: column;
-`
-const LanguageList = styled.ul`
-  list-style-type: none;
-  margin-bottom:${SPACING[4]};
-`
-const LanguageItem = styled.li`
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  grid-template-rows: repeat(3, auto);
-  ${sectionUnderline};
+const AccentedMoreText = styled.p`
+  ${FONTSIZE[5]};
+  color: ${colors.accent.main};
+  letter-spacing: 0.1em;
+  margin-bottom: ${SPACING[6]};
 `
 
 const TableText = styled.p`
@@ -193,15 +88,15 @@ const ResumeHeader = styled.div`
   ${maxWidthContainer};
   display: flex;
   flex-direction: column;
-  padding: ${SPACING[4]};
+  //padding: ${SPACING[4]};
 `
 
 const AvatarImage = styled(Avatar)`
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
 `
 const AvatarContainer = styled.div`
-  margin-bottom: ${SPACING[3]};
+  margin-bottom: ${SPACING[4]};
 `
 const SummaryContainer = styled.div`
   flex-grow: 1;
@@ -212,7 +107,7 @@ const SummaryTitle = styled.h1`
   ${FONTSIZE[6]};
   color: #6c63ff;
   line-height: 1;
-  margin-bottom: 4px;
+  margin-bottom: ${SPACING[2]};
 `
 const SummaryProfession = styled.p`
   ${titleText};
@@ -220,6 +115,7 @@ const SummaryProfession = styled.p`
   text-transform: uppercase;
   color: #d1d5f8;
   font-weight: 300;
+  margin-bottom: ${SPACING[3]}
 `
 const B = styled.b`
   font-weight: 400;
