@@ -1,26 +1,29 @@
 import React from "react"
 import styled from "@emotion/styled"
-import { Link } from "gatsby"
-import {HintLink} from '../../../styles/shared';
 import Search from "../../../assets/images/undraw-searching.inline.svg"
 import ArrowIcon from "../../../assets/icons/arrow.inline.svg"
 
-import PrimaryButton from '../../PrimaryButton';
-import { H1, maxWidthContainer } from "../../../styles/theme"
+import PersonalizeImage from "../../../assets/images/undraw-personalize.inline.svg";
+
+import {PrimaryButton, HintButton} from '../../Button';
+import { H1, maxWidthContainer, headerShared } from "../../../styles/theme"
 import {
   colors,
-  borderRadius,
-  animationDurations,
+  FONTSIZE,
+  SPACING,
+  WEIGHTS,
 } from "../../../styles/variables"
 
 export default () => {
   return (
     <Hero>
       <TextSection>
-        <H1>Hi! I'm Alex</H1>
+        <Greeting>
+          Hello! <Emoji role="img" aria-label="waving hand">👋🏻</Emoji>
+        </Greeting>
+        <Introduction>I'm Alexander</Introduction>
         <Tagline>
-          I'm a software engineer with a passion for Front End development and
-          Design.
+          I’m a software engineer with a passion for UI design
         </Tagline>
         <BioText>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -28,12 +31,11 @@ export default () => {
           consectetur adipiscing elit, sed do eiusmo.
         </BioText>
         <RightAligned>
-          <HintLink withMargin to="/#">Say hi</HintLink>
           <PrimaryButton type="button">Read more</PrimaryButton>
         </RightAligned>
       </TextSection>
       <ImageSection>
-        <SearchImage />
+        <PersonalizeImage />
       </ImageSection>
       <MoreSection>
         <MoreText>Wait, there's more.</MoreText>
@@ -43,88 +45,73 @@ export default () => {
   )
 }
 
+const Greeting = styled.p`
+  ${FONTSIZE[5]};
+  letter-spacing:0.06em;
+  font-weight:${WEIGHTS.SEMI_BOLD};
+  color:#A9ACD1;
+  display:flex;
+  align-items:center;
+  margin-bottom:${SPACING[1]};
+`;
+
+const Emoji = styled.span`
+  ${FONTSIZE[7]};
+  margin-left: ${SPACING[4]};
+`;
+
+const Introduction = styled.h1`
+  ${headerShared};
+  ${FONTSIZE[7]};
+  font-weight:${WEIGHTS.REGULAR};
+`;
 const Hero = styled.section`
   ${maxWidthContainer};
-  padding-top: 50px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  position: relative;
-  z-index: 1;
-
-  &::after,
-  &::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    height: 1000px;
-    width: 1000px;
-    border-radius: 200px;
-    transform: rotateZ(75deg);
-  }
-  &::after {
-    background: ${colors.blob.green};
-    opacity: 0.5;
-
-    right: 950px;
-    top: 200px;
-  }
-
-  &::before {
-    background: ${colors.blob.blue};
-    opacity: 0.75;
-
-    left: 900px;
-    top: 100px;
-  }
+  padding: 0 ${SPACING[4]};
+  padding-top: ${SPACING[5]};
+  display: flex;
+  flex-direction:column;
 `
 
 const TextSection = styled.section`
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  margin-bottom:${SPACING[7]};
 `
 
 const Tagline = styled.p`
-  font-weight: 600;
-  font-size: 18px;
+  ${FONTSIZE[3]};
+  font-weight: ${WEIGHTS.MEDIUM};
   letter-spacing: 0.06em;
-  margin-bottom: 18px;
+  margin-bottom: ${SPACING[5]};
+  line-height:150%;
+
 `
 
 const BioText = styled.p`
-  font-size: 18px;
-  font-weight: 400;
+  ${FONTSIZE[3]};
   letter-spacing: 0.06em;
-  line-height: 1.5em;
-  margin-bottom: 48px;
+  line-height: 160%;
+  margin-bottom:${SPACING[5]};
 `
 
 const RightAligned = styled.div`
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: flex-end;
   align-items: center;
 `
 
 const ImageSection = styled.section`
-  grid-column: 2 / span 1;
-  grid-row: 1 / span 1;
+  margin-bottom: ${SPACING[7]};
 `
 
 const SearchImage = styled(Search)`
   float: right;
 `
 const MoreSection = styled.section`
-  grid-column: 1 / span 2;
-  grid-row: 2 / span 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 124px;
-  margin-bottom:80px;
+  margin-bottom: ${SPACING[7]};
 `
 
 const MoreText = styled.p`

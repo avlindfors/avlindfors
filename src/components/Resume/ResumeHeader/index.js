@@ -2,13 +2,14 @@ import React from "react"
 import styled from "@emotion/styled"
 import { css } from "@emotion/core"
 import Avatar from "../../../assets/images/undraw-avatar.inline.svg"
-import { maxWidthContainer } from "../../../styles/theme"
+import { maxWidthContainer, headerShared } from "../../../styles/theme"
+import { FONTSIZE, SPACING, WEIGHTS } from "../../../styles/variables"
 
 export default () => {
   return (
     <ResumeHeader>
       <AvatarContainer>
-        <Avatar />
+        <AvatarImage />
       </AvatarContainer>
       <SummaryContainer>
         <SummaryTitleContainer>
@@ -18,144 +19,172 @@ export default () => {
           </SummaryProfession>
         </SummaryTitleContainer>
         <TopSummary>
-          <TopLeftSummary>
+          <BasicSummary>
             <SummaryData>
               <SummaryDataTitle>Degree</SummaryDataTitle>
-              <SummaryDataBody>BSc in Computer Science</SummaryDataBody>
+              <MarginBottomTableText>
+                BSc in Computer Science
+              </MarginBottomTableText>
             </SummaryData>
             <SummaryData>
               <SummaryDataTitle>Location</SummaryDataTitle>
-              <SummaryDataBody>Tokyo, Japan</SummaryDataBody>
+              <MarginBottomTableText>Tokyo, Japan</MarginBottomTableText>
             </SummaryData>
             <SummaryData>
               <SummaryDataTitle>Email</SummaryDataTitle>
-              <SummaryDataBody>alex@avlindfors.com</SummaryDataBody>
+              <MarginBottomTableText>alex@avlindfors.com</MarginBottomTableText>
             </SummaryData>
-          </TopLeftSummary>
-          <TopRightSummary>
+          </BasicSummary>
+          <LanguageSummary>
             <SummaryDataTitle>Languages</SummaryDataTitle>
             <LanguageList>
               <LanguageItem>
-                <LanguageName>Swedish</LanguageName>
-                <DimmedTableText>Fluent</DimmedTableText>
+                <TableText>Swedish</TableText>
+                <TableText>Fluent</TableText>
               </LanguageItem>
               <LanguageItem>
-                <LanguageName>English</LanguageName>
-                <DimmedTableText>Fluent</DimmedTableText>
+                <TableText>English</TableText>
+                <TableText>Fluent</TableText>
               </LanguageItem>
               <LanguageItem>
-                <LanguageName>Japanese</LanguageName>
-                <DimmedTableText>Conversational</DimmedTableText>
+                <TableText>Japanese</TableText>
+                <TableText>Conversational</TableText>
               </LanguageItem>
             </LanguageList>
-          </TopRightSummary>
+          </LanguageSummary>
         </TopSummary>
-        <BottomSummary>
+        <section>
           <SummaryDataTitle>Toolkit</SummaryDataTitle>
-          <InlineLists>
-            <ToolkitList>
-              <UpperCaseSummaryDataBody>Web</UpperCaseSummaryDataBody>
-              <ToolkitItem>
-                <DimmedTableText>React</DimmedTableText>
-              </ToolkitItem>
-              <ToolkitItem>
-                <DimmedTableText>JavaScript</DimmedTableText>
-              </ToolkitItem>
-              <ToolkitItem>
-                <DimmedTableText>HTML</DimmedTableText>
-              </ToolkitItem>
-              <ToolkitItem>
-                <DimmedTableText>CSS</DimmedTableText>
-              </ToolkitItem>
-            </ToolkitList>
-            <ToolkitList>
-              <UpperCaseSummaryDataBody>General</UpperCaseSummaryDataBody>
-              <ToolkitItem>
-                <DimmedTableText>Node</DimmedTableText>
-              </ToolkitItem>
-              <ToolkitItem>
-                <DimmedTableText>Python</DimmedTableText>
-              </ToolkitItem>
-              <ToolkitItem>
-                <DimmedTableText>Java</DimmedTableText>
-              </ToolkitItem>
-            </ToolkitList>
-            <ToolkitList>
-              <UpperCaseSummaryDataBody>Storage</UpperCaseSummaryDataBody>
-              <ToolkitItem>
-                <DimmedTableText>MongoDB</DimmedTableText>
-              </ToolkitItem>
-              <ToolkitItem>
-                <DimmedTableText>Firebase</DimmedTableText>
-              </ToolkitItem>
-              <ToolkitItem>
-                <DimmedTableText>SQL</DimmedTableText>
-              </ToolkitItem>
-            </ToolkitList>
-            <ToolkitList>
-              <UpperCaseSummaryDataBody>Other</UpperCaseSummaryDataBody>
-              <ToolkitItem>
-                <DimmedTableText>Docker</DimmedTableText>
-              </ToolkitItem>
-              <ToolkitItem>
-                <DimmedTableText>GitHub</DimmedTableText>
-              </ToolkitItem>
-            </ToolkitList>
-          </InlineLists>
-        </BottomSummary>
+          <ToolkitList>
+            <ToolkitListItem>
+              <TableText>Web</TableText>
+              <SkillList>
+                <SkillItem>
+                  <TableText>React</TableText>
+                </SkillItem>
+                <SkillItem>
+                  <TableText>JavaScript</TableText>
+                </SkillItem>
+                <SkillItem>
+                  <TableText>HTML</TableText>
+                </SkillItem>
+                <SkillItem>
+                  <TableText>CSS</TableText>
+                </SkillItem>
+              </SkillList>
+            </ToolkitListItem>
+            <ToolkitListItem>
+              <TableText>Backend</TableText>
+              <SkillList>
+                <SkillItem>
+                  <TableText>Express</TableText>
+                </SkillItem>
+                <SkillItem>
+                  <TableText>Node</TableText>
+                </SkillItem>
+                <SkillItem>
+                  <TableText>Python</TableText>
+                </SkillItem>
+                <SkillItem>
+                  <TableText>Java</TableText>
+                </SkillItem>
+              </SkillList>
+            </ToolkitListItem>
+            <ToolkitListItem>
+              <TableText>Storage</TableText>
+              <SkillList>
+                <SkillItem>
+                  <TableText>MongoDB</TableText>
+                </SkillItem>
+                <SkillItem>
+                  <TableText>Firebase</TableText>
+                </SkillItem>
+                <SkillItem>
+                  <TableText>SQL</TableText>
+                </SkillItem>
+              </SkillList>
+            </ToolkitListItem>
+            <ToolkitListItem>
+              <TableText>Other</TableText>
+              <SkillList>
+                <SkillItem>
+                  <TableText>Docker</TableText>
+                </SkillItem>
+                <SkillItem>
+                  <TableText>GitHub</TableText>
+                </SkillItem>
+              </SkillList>
+            </ToolkitListItem>
+          </ToolkitList>
+        </section>
       </SummaryContainer>
     </ResumeHeader>
   )
 }
 
-const BottomSummary = styled.section``
-
-const ToolkitList = styled.ul`
-  list-style-type: none;
+const sectionUnderline = css`
   &:not(:last-of-type) {
-    margin-right: 85px;
+    margin-bottom: ${SPACING[4]};
+  }
+  padding-bottom: ${SPACING[4]};
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: #444551;
+    opacity: 0.2;
   }
 `
-const ToolkitItem = styled.li`
-  margin-bottom: 12px;
+const SkillList = styled.ul`
+  list-style-type: none;
 `
-const InlineLists = styled.div`
+const SkillItem = styled.li`
+  &:not(:last-of-type) {
+    margin-bottom: ${SPACING[3]};
+  }
+`
+
+const ToolkitListItem = styled.li`
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  ${sectionUnderline};
+`
+const ToolkitList = styled.ul`
   display: flex;
-  margin-top:12px;
+  flex-direction: column;
 `
 const LanguageList = styled.ul`
   list-style-type: none;
+  margin-bottom:${SPACING[4]};
 `
 const LanguageItem = styled.li`
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: 120px 1fr;
   grid-template-rows: repeat(3, auto);
-  margin-bottom: 18px;
+  ${sectionUnderline};
 `
 
-const tableText = css`
-  font-size: 20px;
-  font-weight: 300;
+const TableText = styled.p`
+  ${FONTSIZE[3]};
+  color: #ffffff;
   letter-spacing: 0.1em;
 `
-const LanguageName = styled.span`
-  ${tableText};
-  color: #b8bde3;
-  font-weight:400;
-  text-transform: uppercase;
-`
-const DimmedTableText = styled.span`
-  color: #d8dbf5;
-  ${tableText}
+const MarginBottomTableText = styled(TableText)`
+  margin-bottom: ${SPACING[2]};
 `
 const TopSummary = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 `
-const TopLeftSummary = styled.div`
+const BasicSummary = styled.div`
   margin-right: 100px;
 `
-const TopRightSummary = styled.div``
+const LanguageSummary = styled.div``
 const titleText = css`
   font-family: "Poppins", sans-serif;
   letter-spacing: 0.1em;
@@ -163,35 +192,34 @@ const titleText = css`
 const ResumeHeader = styled.div`
   ${maxWidthContainer};
   display: flex;
-  flex-direction: row;
-  margin-top: 30px;
-  margin-bottom: 60px;
+  flex-direction: column;
+  padding: ${SPACING[4]};
+`
+
+const AvatarImage = styled(Avatar)`
+  width: 70px;
+  height: 70px;
 `
 const AvatarContainer = styled.div`
-  flex-basis: 225px;
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 55px;
+  margin-bottom: ${SPACING[3]};
 `
 const SummaryContainer = styled.div`
   flex-grow: 1;
 `
-
 const SummaryTitleContainer = styled.header``
 const SummaryTitle = styled.h1`
-  ${titleText};
-  font-size: 56px;
+  ${headerShared};
+  ${FONTSIZE[6]};
   color: #6c63ff;
   line-height: 1;
   margin-bottom: 4px;
 `
 const SummaryProfession = styled.p`
   ${titleText};
+  ${FONTSIZE[2]};
   text-transform: uppercase;
   color: #d1d5f8;
-  font-size: 18px;
   font-weight: 300;
-  margin-bottom: 24px;
 `
 const B = styled.b`
   font-weight: 400;
@@ -201,22 +229,8 @@ const B = styled.b`
 const SummaryData = styled.span``
 const SummaryDataTitle = styled.h5`
   ${titleText};
-  font-size: 24px;
-  font-weight: 400;
-  color: #d1d5f8;
-  margin-bottom: 6px;
-`
-const SummaryDataBody = styled.p`
-  font-size: 20px;
-  letter-spacing: 0.1em;
+  ${FONTSIZE[5]};
+  font-weight: ${WEIGHTS.REGULAR};
   color: #d8dbf5;
-  font-weight: 300;
-  margin-bottom: 20px;
-`
-
-const UpperCaseSummaryDataBody = styled(SummaryDataBody)`
-  text-transform: uppercase;
-  color: #b8bde3;
-  font-weight:400;
-  margin-bottom:12px
+  margin-bottom: 6px;
 `

@@ -15,7 +15,7 @@ module.exports = {
       options: {
         fonts: [
           `poppins\:300,300i,400,400i,500,600,700`,
-          `source sans pro\:300,400,600,700`,
+          `source sans pro\:300,400,500,600,700`,
         ],
         display: "swap",
       },

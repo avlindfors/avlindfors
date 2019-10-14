@@ -2,9 +2,9 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "@emotion/styled"
 import { maxWidthContainer } from "../../styles/theme"
-import { colors } from "../../styles/variables"
+import { colors, SPACING, FONTSIZE } from "../../styles/variables"
 
-import NewsLetter from '../NewsLetter'
+import NewsLetter from "../NewsLetter"
 
 import LogoWithText from "../../assets/images/avl-logo-text.inline.svg"
 
@@ -18,112 +18,112 @@ import LinkedinIcon from "../../assets/icons/linkedin.inline.svg"
 
 export default () => (
   <>
-  <NewsLetter />
-  <Wrapper>
-    <Footer>
-      <LogoSection>
-        <LogoWithText />
-      </LogoSection>
-      <LinkSection>
-        <ContactSection>
-          <Address>
-            <SectionTitle>Contact</SectionTitle>
-            <ContactList>
-              <ContactItem>
-                <IconWrapper>
-                  <EmailIcon />
-                </IconWrapper>
-                <ContactBody>
-                  <Mail
-                    href="mailto:alex@avlindfors.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    alex@avlindfors.com
-                  </Mail>
-                </ContactBody>
-              </ContactItem>
-              <ContactItem>
-                <IconWrapper>
-                  <PhoneIcon />
-                </IconWrapper>
-                <ContactBody>+8180 4989 6399</ContactBody>
-              </ContactItem>
-              <ContactItem>
-                <IconWrapper>
-                  <LocationIcon />
-                </IconWrapper>
-                <ContactBody>Tokyo, Japan</ContactBody>
-              </ContactItem>
-            </ContactList>
-          </Address>
-        </ContactSection>
-        <PagesSection>
-          <nav>
-            <SectionTitle>Pages</SectionTitle>
-            <PagesList>
-              <PagesItem>
-                <LinkBody>
-                  <NavLink to="/">Home</NavLink>
-                </LinkBody>
-              </PagesItem>
+    <NewsLetter />
+    <Wrapper>
+      <Footer>
+        <LogoSection>
+          <LogoWithText />
+        </LogoSection>
+        <LinkSection>
+          <ContactSection>
+            <Address>
+              <SectionTitle>Contact</SectionTitle>
+              <ContactList>
+                <ContactItem>
+                  <IconWrapper>
+                    <EmailIcon />
+                  </IconWrapper>
+                  <ContactBody>
+                    <Mail
+                      href="mailto:alex@avlindfors.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      alex@avlindfors.com
+                    </Mail>
+                  </ContactBody>
+                </ContactItem>
+                <ContactItem>
+                  <IconWrapper>
+                    <PhoneIcon />
+                  </IconWrapper>
+                  <ContactBody>+8180 4989 6399</ContactBody>
+                </ContactItem>
+                <ContactItem>
+                  <IconWrapper>
+                    <LocationIcon />
+                  </IconWrapper>
+                  <ContactBody>Tokyo, Japan</ContactBody>
+                </ContactItem>
+              </ContactList>
+            </Address>
+          </ContactSection>
+          <PagesSection>
+            <nav>
+              <SectionTitle>Pages</SectionTitle>
+              <PagesList>
+                <PagesItem>
+                  <LinkBody>
+                    <NavLink to="/">Home</NavLink>
+                  </LinkBody>
+                </PagesItem>
 
-              <PagesItem>
-                <LinkBody>
-                  <NavLink to="/resume">Resume</NavLink>
-                </LinkBody>
-              </PagesItem>
+                <PagesItem>
+                  <LinkBody>
+                    <NavLink to="/resume">Resume</NavLink>
+                  </LinkBody>
+                </PagesItem>
 
-              <PagesItem>
-                <LinkBody>
-                  <NavLink to="/blog">Blog</NavLink>
-                </LinkBody>
-              </PagesItem>
-            </PagesList>
-          </nav>
-        </PagesSection>
-      </LinkSection>
-    </Footer>
-    <FullWidthSocialFooter>
-      <SocialFooterContent>
-        <CopyrightNotice>
-          <Copyright>Alexander Lindfors © 2019</Copyright>
-          <ItalicDimText>
-            Crafted lovingly with Gatsby, React and Node
-          </ItalicDimText>
-        </CopyrightNotice>
-        <SocialSection>
-          <SocialIcon>
-            <a
-              href="https://www.linkedin.com/in/alexander-lindfors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <LinkedinIcon />
-            </a>
-          </SocialIcon>
-          <SocialIcon>
-            <a
-              href="https://www.github.com/alindfor"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <GithubIcon />
-            </a>
-          </SocialIcon>
-          <SocialIcon>
-            <a
-              href="https://www.twitter.com/a_lindfors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <TwitterIcon />
-            </a>
-          </SocialIcon>
-        </SocialSection>
-      </SocialFooterContent>
-    </FullWidthSocialFooter>
-  </Wrapper>
+                <PagesItem>
+                  <LinkBody>
+                    <NavLink to="/blog">Blog</NavLink>
+                  </LinkBody>
+                </PagesItem>
+              </PagesList>
+            </nav>
+          </PagesSection>
+        </LinkSection>
+      </Footer>
+      <FullWidthSocialFooter>
+        <SocialFooterContent>
+          <CopyrightNotice>
+            <Copyright>Alexander Lindfors © 2019</Copyright>
+            <ItalicDimText>
+              Crafted lovingly with Gatsby, React and Node
+            </ItalicDimText>
+          </CopyrightNotice>
+          <SocialSection>
+            <SocialIcon>
+              <a
+                href="https://www.linkedin.com/in/alexander-lindfors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LinkedinIcon />
+              </a>
+            </SocialIcon>
+            <SocialIcon>
+              <a
+                href="https://www.github.com/alindfor"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GithubIcon />
+              </a>
+            </SocialIcon>
+            <SocialIcon>
+              <a
+                href="https://www.twitter.com/a_lindfors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <TwitterIcon />
+              </a>
+            </SocialIcon>
+          </SocialSection>
+        </SocialFooterContent>
+      </FullWidthSocialFooter>
+    </Wrapper>
   </>
 )
 
@@ -132,10 +132,10 @@ const Wrapper = styled.footer`
 `
 const Footer = styled.section`
   ${maxWidthContainer};
-  height: 402px;
-  padding: 100px 0;
+  padding: ${SPACING[7]} ${SPACING[4]};
+  padding-bottom:${SPACING[7]};
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
 `
 
@@ -146,26 +146,31 @@ const FullWidthSocialFooter = styled.footer`
 const SocialFooterContent = styled.div`
   ${maxWidthContainer};
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+
   justify-content: space-between;
-  height: 122px;
-  padding: 32px 0;
+  padding: ${SPACING[5]} ${SPACING[4]};
 `
 const LogoSection = styled.div`
-  flex-basis: 50%;
+  margin-bottom: ${SPACING[5]};
 `
 
 const LinkSection = styled.div`
   flex-grow: 1;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
 `
 
-const BaseSection = styled.section``
+const BaseSection = styled.section`
+  &:not(:last-of-type) {
+    margin-bottom: ${SPACING[5]};
+  }
+`
 const LinkItem = styled.li`
-  margin-bottom: 32px;
+  &:not(:last-of-type) {
+    margin-bottom: ${SPACING[5]};
+  }
 `
 const LinkBody = styled.span`
   font-family: "Poppins", sans-serif;
@@ -224,15 +229,16 @@ const SocialFooterText = styled.p`
   color: #d7daf4;
 `
 const Copyright = styled(SocialFooterText)`
-  font-size: 18px;
+  ${FONTSIZE[3]};
   font-weight: 300;
-  margin-bottom: 8px;
+  margin-bottom: ${SPACING[3]}
 `
 const ItalicDimText = styled(SocialFooterText)`
   font-style: italic;
+  ${FONTSIZE[2]};
   font-weight: 300;
-  font-size: 16px;
   opacity: 0.9;
+  margin-bottom: ${SPACING[5]}
 `
 
 const Address = styled.address`

@@ -2,9 +2,9 @@
 import styled from "@emotion/styled"
 // eslint-disable-next-line
 import { css, jsx } from "@emotion/core"
-import { colors } from "./variables"
+import { colors, FONTSIZE, SPACING } from "./variables"
 
-const headerShared = css`
+export const headerShared = css`
   font-family: "Poppins", sans-serif;
   letter-spacing: 0.06em;
 `
@@ -46,10 +46,10 @@ export const maxWidthContainer = css`
 
 export const BodyText = styled.p`
   color: ${colors.text.dark};
-  font-size: 18px;
+  ${FONTSIZE[4]};
   line-height: 1.6em;
-  margin-bottom: 18px;
   letter-spacing: 0.06em;
+  margin-bottom: ${SPACING[5]};
 `
 
 export const Flex = styled.div`

@@ -1,44 +1,55 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "@emotion/styled"
 import { css } from "@emotion/core"
-import { borderRadius, animationDurations } from "../../styles/variables"
+import {
+  borderRadius,
+  animationDurations,
+  SPACING,
+} from "../../styles/variables"
+import { PrimaryButton } from "../Button"
 
 export default () => {
+  const [email, setEmail] = useState("")
+
+  const handleChange = event => {
+    const { value } = event.target
+    setEmail(value)
+  }
   const handleSubmit = event => {
     event.preventDefault()
     console.log("Subscribing")
+    console.log(email)
   }
   return (
     <FullWidthWrapper>
       <FloatingForm name="newsletter" onSubmit={handleSubmit}>
-        <FormTitle>Let's keep in touch</FormTitle>
+        <FormTitle>Stay tuned</FormTitle>
         <FormSubtitle>
-          Let me know who you are and you will be the first to know when I write
-          something new
+          Let me know how I can reach you and you will be the first to know when
+          I have any updates
         </FormSubtitle>
-        <InputGroup>
-          <FormLabel htmlFor="newsletter-name">Name</FormLabel>
-          <FormInput
-            type="text"
-            id="newsletter-name"
-            placeholder="Name McNameson"
-          ></FormInput>
-        </InputGroup>
         <InputGroup>
           <FormLabel htmlFor="newsletter-email">Email</FormLabel>
           <FormInput
             type="text"
             id="newsletter-email"
             placeholder="name@example.com"
+            value={email}
+            onChange={handleChange}
           ></FormInput>
         </InputGroup>
-
-        <SubscribeButton type="submit">SUBSCRIBE</SubscribeButton>
+        <RightAlignedButton background="#1b2fe2" type="submit">
+          SUBSCRIBE
+        </RightAlignedButton>
       </FloatingForm>
     </FullWidthWrapper>
   )
 }
 
+const RightAlignedButton = styled(PrimaryButton)`
+  float: right;
+`
+const RightAligned = styled.div``
 const FullWidthWrapper = styled.section`
   background: #f4f6fc;
   position: relative;
@@ -50,11 +61,9 @@ const FullWidthWrapper = styled.section`
 const FloatingForm = styled.form`
   background: #ffffff;
   width: 650px;
-  position: relative;
-  bottom: 40px;
   border-radius: ${borderRadius};
   box-shadow: 0 4px 12px #00000020, 0 6px 20px #0000000f;
-  padding: 32px 60px;
+  padding: ${SPACING[7]} ${SPACING[4]};
 `
 
 const formText = css`
@@ -74,7 +83,7 @@ const FormSubtitle = styled.p`
   margin-bottom: 12px;
 `
 const InputGroup = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: ${SPACING[4]};
 `
 const FormLabel = styled.label`
   ${formText};
@@ -97,7 +106,7 @@ const FormInput = styled.input`
   border-radius: ${borderRadius};
   transition: ${animationDurations.fast} ease;
   &:focus {
-    border: 1px solid #ABBCE6;
+    border: 1px solid #abbce6;
   }
   &::placeholder {
     color: #6a6a6a;

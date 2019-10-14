@@ -4,10 +4,9 @@ import { css } from "@emotion/core"
 import { Link } from "gatsby"
 
 import { HintLink } from "../../../styles/shared"
-import PrimaryButton from "../../PrimaryButton"
+import { PrimaryButton } from "../../Button"
 
-import Letter from "../../../assets/images/undraw-letter.inline.svg"
-
+import EnvelopeImage from "../../../assets/images/undraw-envelope.inline.svg"
 import {
   H1,
   maxWidthContainer,
@@ -20,7 +19,9 @@ import {
   colors,
   borderRadius,
   animationDurations,
+  SPACING,
 } from "../../../styles/variables"
+import { SectionTitle } from "../Skills"
 
 export default () => {
   const handleSubmit = event => {
@@ -28,54 +29,33 @@ export default () => {
     console.log("submitting")
   }
   return (
-    <>
-      <BackgroundSVGBlobs />
-      <Message>
-        <Flex direction="row" justifyContent="space-between">
-          <LetterImage />
-          <MessageForm name="message" onSubmit={handleSubmit}>
-            <FormTitle>Send me a message</FormTitle>
-            <FormControl>
-              <FormLabel htmlFor="name">Name</FormLabel>
-              <FormInput id="name" placeholder="Alexander Lindfors"></FormInput>
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="email">Email</FormLabel>
-              <FormInput
-                id="email"
-                placeholder="alex@avlindfors.com"
-              ></FormInput>
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="message">Message</FormLabel>
-              <FormInput
-                textArea
-                id="message"
-                placeholder="I’m a software engineer with a passion for Front End Development and Design work. Use this form to contact me."
-              ></FormInput>
-            </FormControl>
-            <FormSubmit>
-              <PrimaryButton type="submit">Send</PrimaryButton>
-            </FormSubmit>
-          </MessageForm>
-        </Flex>
-        <UnderTheHoodSection>
-          <UnderTheHoodTitle light>
-            Under the hood: Sending Messages
-          </UnderTheHoodTitle>
-          <UnderTheHoodCopy light>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis
-            officia soluta illum doloremque neque perferendis accusantium libero
-            sit adipisci deserunt, suscipit sunt natus numquam tempore ipsum
-            facilis quisquam ducimus nesciunt!
-            <br></br>
-            <br></br>
-            sit adipisci deserunt, suscipit sunt natus numquam tempore ipsum
-            facilis quisquam ducimus nesciunt!
-          </UnderTheHoodCopy>
-        </UnderTheHoodSection>
-      </Message>
-    </>
+    <Message>
+      <MessageForm name="message" onSubmit={handleSubmit}>
+        <SectionTitle color="#F3F3F3">Send me a message</SectionTitle>
+        <FormControl>
+          <FormLabel htmlFor="name">Name</FormLabel>
+          <FormInput id="name" placeholder="Alexander Lindfors"></FormInput>
+        </FormControl>
+        <FormControl>
+          <FormLabel htmlFor="email">Email</FormLabel>
+          <FormInput id="email" placeholder="alex@avlindfors.com"></FormInput>
+        </FormControl>
+        <FormControl>
+          <FormLabel htmlFor="message">Message</FormLabel>
+          <FormInput
+            textArea
+            id="message"
+            placeholder="I’m a software engineer with a passion for Front End Development and Design work. Use this form to contact me."
+          ></FormInput>
+        </FormControl>
+        <FormSubmit>
+          <PrimaryButton type="submit">Send</PrimaryButton>
+        </FormSubmit>
+      </MessageForm>
+      <ImageWrapper>
+        <EnvelopeImage />
+      </ImageWrapper>
+    </Message>
   )
 }
 
@@ -108,22 +88,24 @@ const BackgroundSVGBlobs = styled.div`
     background: ${colors.blob.blue};
     opacity: 0.75;
     right: -800px;
-    bottom:-600px ;
+    bottom: -600px;
   }
 `
 const Message = styled.section`
   ${maxWidthContainer};
-  padding-top: 180px;
+  padding: 0 ${SPACING[4]};
+  padding-top: ${SPACING[7]};
   display: flex;
   flex-direction: column;
   position: relative;
   z-index: 1;
 `
-const LetterImage = styled(Letter)`
-  flex-basis: 50%;
+const ImageWrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom:${SPACING[8]};
 `
 
 const MessageForm = styled.form`
@@ -181,7 +163,7 @@ const Input = styled.input`
 
 const TextArea = styled.textarea`
   ${textSharedStyles};
-  height: 150px;
+  height: 170px;
   resize: none;
 `
 const FormInput = ({ textArea, ...props }) => {
@@ -192,13 +174,17 @@ const FormInput = ({ textArea, ...props }) => {
   }
 }
 
-const FormSubmit = styled.div``
+const FormSubmit = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: ${SPACING[6]};
+`
 
 const UnderTheHoodSection = styled.section`
   padding-bottom: 0;
   z-index: 2;
   margin-bottom: 140px;
-  margin-top:20px;
+  margin-top: 20px;
 `
 const UnderTheHoodTitle = styled(H6)`
   color: ${({ light }) => (light ? `#F3F3F3` : `#0a1121`)};

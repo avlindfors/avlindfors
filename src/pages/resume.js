@@ -6,6 +6,7 @@ import ResumeHeader from "../components/Resume/ResumeHeader"
 
 import SEO from "../components/seo"
 import { maxWidthContainer } from "../styles/theme"
+import { SPACING } from "../styles/variables"
 
 export default () => (
   <Layout>
@@ -19,11 +20,8 @@ export default () => (
         <ResumeSectionList>
           <ResumeSectionItem>
             <ResumeSectionItemTitle>TableCheck Inc</ResumeSectionItemTitle>
-            <Row>
-              <ResumeSectionRole>Junior Software Engineer</ResumeSectionRole>
-              &bull;
-              <ResumeSectionDuration>06/2019 - present</ResumeSectionDuration>
-            </Row>
+            <ResumeSectionRole>Junior Software Engineer</ResumeSectionRole>
+            <ResumeSectionDuration>06/2019 - present</ResumeSectionDuration>
             <ResumeSectionLocation>Tokyo, Japan</ResumeSectionLocation>
             <ResumeSectionBody>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis
@@ -34,11 +32,8 @@ export default () => (
           </ResumeSectionItem>
           <ResumeSectionItem>
             <ResumeSectionItemTitle>Erlang Solutions</ResumeSectionItemTitle>
-            <Row>
-              <ResumeSectionRole>Erlang Developer</ResumeSectionRole>
-              &bull;
-              <ResumeSectionDuration>10/2017 - 04/2018</ResumeSectionDuration>
-            </Row>
+            <ResumeSectionRole>Erlang Developer</ResumeSectionRole>
+            <ResumeSectionDuration>10/2017 - 04/2018</ResumeSectionDuration>
             <ResumeSectionLocation>Stockholm, Sweden</ResumeSectionLocation>
             <ResumeSectionBody>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis
@@ -49,11 +44,8 @@ export default () => (
           </ResumeSectionItem>
           <ResumeSectionItem>
             <ResumeSectionItemTitle>Ericsson</ResumeSectionItemTitle>
-            <Row>
-              <ResumeSectionRole>Software Engineering Intern</ResumeSectionRole>
-              &bull;
-              <ResumeSectionDuration>06/2017 - 10/2017</ResumeSectionDuration>
-            </Row>
+            <ResumeSectionRole>Software Engineering Intern</ResumeSectionRole>
+            <ResumeSectionDuration>06/2017 - 10/2017</ResumeSectionDuration>
             <ResumeSectionLocation>Stockholm, Sweden</ResumeSectionLocation>
             <ResumeSectionBody>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis
@@ -73,11 +65,8 @@ export default () => (
             <ResumeSectionItemTitle>
               KTH, Royal Institute of Technology
             </ResumeSectionItemTitle>
-            <Row>
-              <ResumeSectionRole>BSc in Computer Science</ResumeSectionRole>
-              &bull;
-              <ResumeSectionDuration>09/2014 - 06/2017</ResumeSectionDuration>
-            </Row>
+            <ResumeSectionRole>BSc in Computer Science</ResumeSectionRole>
+            <ResumeSectionDuration>09/2014 - 06/2017</ResumeSectionDuration>
             <ResumeSectionLocation>Stockholm, Sweden</ResumeSectionLocation>
             <ResumeSectionBody>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis
@@ -90,11 +79,8 @@ export default () => (
             <ResumeSectionItemTitle>
               Academy of Language Arts
             </ResumeSectionItemTitle>
-            <Row>
-              <ResumeSectionRole>Japanese School</ResumeSectionRole>
-              &bull;
-              <ResumeSectionDuration>10/2018 - 07/2019</ResumeSectionDuration>
-            </Row>
+            <ResumeSectionRole>Japanese School</ResumeSectionRole>
+            <ResumeSectionDuration>10/2018 - 07/2019</ResumeSectionDuration>
             <ResumeSectionLocation>Tokyo, Japan</ResumeSectionLocation>
             <ResumeSectionBody>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis
@@ -110,7 +96,7 @@ export default () => (
 )
 
 const ResumeWrapper = styled.section`
-  margin-bottom: 100px;
+  padding: ${SPACING[4]};
 `
 
 const Row = styled.div`
@@ -127,9 +113,7 @@ const ResumeSectionRole = styled(ResumeSectionInfo)`
   font-weight: 600;
   margin-right: 16px;
 `
-const ResumeSectionDuration = styled(ResumeSectionInfo)`
-  margin-left: 16px;
-`
+const ResumeSectionDuration = styled(ResumeSectionInfo)``
 const ResumeSectionLocation = styled(ResumeSectionInfo)`
   margin-bottom: 12px;
 `
@@ -156,24 +140,20 @@ const ResumeSectionItemTitle = styled.h3`
   letter-spacing: 0.1em;
   color: #d4d3ed;
   font-family: "Poppins", sans-serif;
-  margin-bottom: 4px;
   font-weight: 600;
 `
 const ResumeSection = styled.section`
   ${maxWidthContainer};
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   &:not(:last-of-type) {
     margin-bottom: 60px;
   }
 `
 
 const ResumeSectionTitleContainer = styled.div`
-  flex-basis: 225px;
   max-width: 225px;
   display: flex;
-  justify-content: flex-end;
-  margin-right: 55px;
 `
 const ResumeSectionTitle = styled.h2`
   color: #6c63ff;
@@ -182,4 +162,5 @@ const ResumeSectionTitle = styled.h2`
   font-weight: 700;
   font-family: "Poppins", sans-serif;
   line-height: 1;
+  margin-bottom:${SPACING[4]};
 `

@@ -2,9 +2,14 @@ import React from "react"
 import styled from "@emotion/styled"
 
 import { H1, maxWidthContainer, H2 } from "../../../styles/theme"
-import { colors, animationDurations } from "../../../styles/variables"
+import {
+  colors,
+  animationDurations,
+  FONTSIZE,
+  SPACING,
+} from "../../../styles/variables"
 import { HintLink } from "../../../styles/shared"
-import PrimaryButton from "../../PrimaryButton"
+import { PrimaryButton } from "../../Button"
 
 import HeartIcon from "../../../assets/icons/heart.inline.svg"
 import HeartOutlineIcon from "../../../assets/icons/heart-outline.inline.svg"
@@ -25,13 +30,13 @@ export default () => {
           and as a person.
         </CenteredQuote>
         <CenteredCopyText>
-          I built this website from scratch as a way to show how I work and what
-          I can do.
+          I designed and built this website from scratch as a way to show how I
+          work and what I can do.
           <br></br>
           If you want to know more, send me a message or check out my resume.
         </CenteredCopyText>
         <CenteredButtons>
-          <PrimaryButton type="button">Get in touch</PrimaryButton>
+          <PrimaryButton type="button">GET IN TOUCH</PrimaryButton>
           <DarkHintLink to="/resume">See resume</DarkHintLink>
         </CenteredButtons>
       </MaxWidthContainer>
@@ -50,10 +55,11 @@ const Bold = styled.span`
   font-weight: 600;
 `
 const BonusContainer = styled.footer`
-  background: #e8eefa;
+  padding: ${SPACING[6]} ${SPACING[4]};
+  ${FONTSIZE[3]};
+  line-height:150%;
   color: #4e566f;
-  font-size: 18px;
-  height: 110px;
+  background: #e8eefa;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,48 +76,38 @@ const CenteredButtons = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  margin-bottom: 60px;
+  margin-bottom: ${SPACING[6]};
 `
 
 const DarkHintLink = styled(HintLink)`
   color: #666a8a;
   margin-top: 24px;
+
   text-align: center;
+  ${FONTSIZE[2]};
 `
 
 const Quote = styled.section`
   background: #f6f6fd;
-  z-index: 1;
-  position: relative;
-  &::before {
-    position: absolute;
-    content: "";
-    height: 600px;
-    width: 400px;
-    background: url(${blobImage});
-    background-size: auto;
-    background-repeat: no-repeat;
-    right: -20px;
-    top: 150px;
-  }
+
 `
 
 const MaxWidthContainer = styled.div`
   ${maxWidthContainer};
-  padding-top: 110px;
   display: flex;
   flex-direction: column;
+  padding: 0 ${SPACING[4]};
+  padding-top: ${SPACING[9]};
+  overflow:hidden;
 `
 
 const CenteredQuote = styled(H1)`
-  color: ${colors.text.dark};
+  ${FONTSIZE[5]};
   font-style: italic;
   font-weight: 400;
-  font-size: 36px;
-  max-width: 900px;
-  text-align: left;
-  margin: 0 auto;
-  margin-bottom: 80px;
+  color: ${colors.text.dark};
+  margin-bottom: ${SPACING[8]};
+  margin-top: ${SPACING[3]};
   position: relative;
   &::after,
   &::before {
@@ -121,27 +117,27 @@ const CenteredQuote = styled(H1)`
     width: 120px;
     background: url(${quoteImage});
     background-size: cover;
+
   }
   &::before {
-    bottom: 40px;
-    left: -135px;
+    bottom: 120px;
+    left: -20px;
   }
   &::after {
-    top: 45px;
-    right: -70px;
+    top: 90px;
+    right: -20px;
     transform: scale(-1, -1);
   }
 `
 const CenteredCopyText = styled.p`
+  ${FONTSIZE[3]}
   text-align: left;
   margin: 0 auto;
   max-width: 700px;
   color: ${colors.text.dark};
-  font-size: 18px;
   font-weight: 400;
   line-height: 1.6em;
   letter-spacing: 0.06em;
-  margin-bottom: 60px;
-
+  margin-bottom: ${SPACING[6]};
   z-index: 1;
 `
