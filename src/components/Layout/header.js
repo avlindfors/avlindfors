@@ -12,17 +12,16 @@ import {
   SPACING,
   FONTSIZE,
   WEIGHTS,
+  BREAKPOINTS,
 } from "../../styles/variables"
 import { maxWidthContainer } from "../../styles/theme"
 
 export default () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false)
-  const [scrollY, setScrollY] = useState(0)
   useEffect(() => {
     function handleScroll() {
       // Force close menu on scroll
       setMenuIsOpen(false)
-      setScrollY(window.scrollY)
     }
     window.addEventListener("scroll", handleScroll)
     return () => {
@@ -30,8 +29,6 @@ export default () => {
     }
   }, [])
 
-  const headerHeightScrollOffset = 500
-  const offsetIsExceeded = scrollY >= headerHeightScrollOffset
   return (
     <Header
       menuIsOpen={menuIsOpen}
@@ -85,6 +82,10 @@ const HamburgerWrapper = styled.div`
   box-sizing: border-box;
   border-radius: 4px;
   transition: ${animationDurations.fast} ease;
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    display: none;
+    visibility: hidden;
+  }
 `
 const HamburgerIcon = styled.div`
   width: 30px;
@@ -130,6 +131,10 @@ const Header = styled.header`
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    flex-direction: row;
+    align-items: center;
+  }
 `
 
 const NavContainer = styled.nav`
@@ -139,35 +144,53 @@ const NavContainer = styled.nav`
   transition: ${animationDurations.normal} ease-in-out;
   left: 0;
   right: 0;
-  height:100vh;
+  height: 100vh;
   opacity: ${({ menuIsOpen }) => (menuIsOpen ? 1 : 0)};
   pointer-events: ${({ menuIsOpen }) => (menuIsOpen ? "all" : "none")};
   z-index: -1;
-  padding-top:${SPACING[4]};
+  padding-top: ${SPACING[4]};
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    position: initial;
+    opacity: 1;
+    pointer-events: all;
+    height: auto;
+  }
 `
 const NavList = styled.ul`
   list-style-type: none;
   margin: ${SPACING[5]} ${SPACING[4]};
   margin-top: 0;
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    display: flex;
+  }
 `
 
 const LinkItem = styled.li`
   margin-bottom: ${SPACING[4]};
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    margin-bottom: 0;
+    &:not(:last-of-type) {
+      margin-right: ${SPACING[6]};
+    }
+  }
 `
 
 const StyledNavLink = styled(Link)`
   font-family: "Poppins", sans-serif;
+  ${FONTSIZE[7]};
   color: ${colors.text.nav.idle};
   text-decoration: none;
   letter-spacing: 0.1em;
   font-weight: ${WEIGHTS.REGULAR};
-  ${FONTSIZE[7]};
   transition: ${animationDurations.fast} ease;
   text-transform: uppercase;
-  display: block;
   border-radius: 4px;
   &:hover {
     color: ${colors.text.nav.hover};
+  }
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    ${FONTSIZE[5]};
+    display: flex;
   }
 `
 

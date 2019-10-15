@@ -90,9 +90,10 @@ export const SPACING = {
 export const BREAKPOINTS = {
   XXS: "360px",
   XS: "576px",
-  SM: "1280px",
-  MD: "1440px",
-  LG: "1920px",
+  SM: "768px",
+  MD: "1280px",
+  LG: "1440px",
+  XL: "1920px",
 }
 
 export const WEIGHTS = {
