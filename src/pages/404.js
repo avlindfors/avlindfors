@@ -12,22 +12,22 @@ import { LinkButton } from "../components/Button"
 export default function NotFoundPage() {
   return (
     <Layout>
-      <SEO title="404: Not found" />
+      <SEO title="404" />
       <NotFound>
         <TextSection>
           <NotFoundTitle>404</NotFoundTitle>
           <NotFoundSubtitle>Page not found</NotFoundSubtitle>
           <NotFoundCopy>
-            Whoops! It seems like you’re looking for a page that doesn’t exist.<br></br>
+            Whoops! It seems like you’re looking for a page that doesn’t exist.
+            <br></br>
             Please make sure you are entering the correct address.
-
           </NotFoundCopy>
           <Align>
             <LinkButton to="/">GO HOME</LinkButton>
           </Align>
         </TextSection>
         <ImageSection>
-          <Spooky role="img" aria-labelledby="spooky-image"/>
+          <Spooky role="img" aria-labelledby="spooky-image" />
           <SpookyText>Maybe it's been taken.</SpookyText>
         </ImageSection>
       </NotFound>
@@ -71,7 +71,7 @@ const NotFoundSubtitle = styled.h2`
 
 const NotFoundCopy = styled.p`
   margin-bottom: ${SPACING[5]};
-  line-height:150%;
+  line-height: 150%;
   @media screen and (min-width: ${BREAKPOINTS.SM}) {
     ${FONTSIZE[4]};
   }

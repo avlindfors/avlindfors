@@ -33,7 +33,7 @@ export default () => {
   }
 
   function getFirstFieldError(field) {
-    if (error == null) return
+    if (error == null || typeof error === "string") return
     const errors = error.filter(item => {
       const { param } = item
       return param === field
@@ -56,7 +56,7 @@ export default () => {
     setError(null)
     axios({
       method: "post",
-      url: "/message",
+      url: `${process.env.API_ENDPOINT}/message`,
       data: {
         name,
         email,
@@ -66,14 +66,35 @@ export default () => {
         username: `${process.env.AVL_USERNAME}`,
         password: `${process.env.AVL_PASSWORD}`,
       },
+      timeout: 5000,
     })
-      .then(() => {
+      .then(data => {
+        console.log(data)
         setData("Message successfully sent!")
         setError(null)
       })
-      .catch(err => {
-        //console.log(err.response.data.errors)
-        setError(err.response.data.errors)
+      .catch(error => {
+        let errorMsg = "Error sending message, please try again."
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+          errorMsg = error.response.data.errors
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          console.log(error.request)
+          errorMsg = "There seems to be a problem with the server."
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log("Error", error.message)
+          errorMsg =
+            "There was an unknown error sending the message, please try again."
+        }
+        setError(errorMsg)
         setData(null)
       })
       .finally(() => {
@@ -131,6 +152,9 @@ export default () => {
               <LightErrorText>
                 {getFirstFieldError("message").msg}
               </LightErrorText>
+            )}
+            {error && typeof error === "string" && (
+              <LightErrorText>{error}</LightErrorText>
             )}
             {data && <LightSuccessText>{data}</LightSuccessText>}
           </FormControl>

@@ -30,7 +30,7 @@ export default () => {
 
     axios({
       method: "post",
-      url: "www.nonexistenserver.com/newendpoint",
+      url: `${process.env.API_ENDPOINT}/subscribe`,
       data: {
         email,
       },
@@ -38,6 +38,7 @@ export default () => {
         username: `${process.env.AVL_USERNAME}`,
         password: `${process.env.AVL_PASSWORD}`,
       },
+      timeout: 5000,
     })
       .then(({ data }) => {
         const { message } = data

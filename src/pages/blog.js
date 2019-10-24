@@ -18,7 +18,7 @@ import { LinkButton, SecondaryLinkButton } from "../components/Button"
 
 const Blog = () => (
   <Layout>
-    <SEO title="Home" />
+    <SEO title="Blog" />
     <BlogContainer>
       <TextSection>
         <ExtraMarginPageTitle>The blog isn't ready... yet</ExtraMarginPageTitle>

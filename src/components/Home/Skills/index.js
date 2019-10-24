@@ -75,11 +75,12 @@ export default () => {
     axios
       .request({
         method: "get",
-        url: `/v1/likes`,
+        url: `${process.env.API_ENDPOINT}/likes`,
         auth: {
           username: `${process.env.AVL_USERNAME}`,
           password: `${process.env.AVL_PASSWORD}`,
         },
+        timeout: 5000,
       })
       .then(({ data }) => {
         Object.entries(data).forEach(item => {
@@ -123,14 +124,15 @@ export default () => {
         setCookie(LIKES_KEY, cookie, cookieSettings)
       }
 
-      // Anyway, I started blastinge
+      // Anyway, I started blasting
       axios.request({
         method: "post",
-        url: `/v1/likes/${resource}`,
+        url: `${process.env.API_ENDPOINT}/likes/${resource}`,
         auth: {
           username: `${process.env.AVL_USERNAME}`,
           password: `${process.env.AVL_PASSWORD}`,
         },
+        timeout: 5000,
       })
     }
   }
