@@ -16,6 +16,7 @@ import {
   SPACING,
   FONTSIZE,
   WEIGHTS,
+  BREAKPOINTS,
 } from "../../../styles/variables"
 
 // Icons
@@ -40,12 +41,14 @@ export default () => {
   const [frontendLikes, setFrontendLikes] = useState(0)
   const [backendLikes, setBackendLikes] = useState(0)
   const [designLikes, setDesignLikes] = useState(0)
-
   const resourceToUpdateMap = {
     frontend: { state: frontendLikes, update: setFrontendLikes },
     backend: { state: backendLikes, update: setBackendLikes },
     design: { state: designLikes, update: setDesignLikes },
   }
+
+  const [isLikeAllowed, setIsLikeAllowed] = useState(true)
+  const likeLimit = 10
 
   const [cookies, setCookie] = useCookies([LIKES_KEY])
 
@@ -61,10 +64,18 @@ export default () => {
         cookieSettings
       )
     }
+
+    if (cookies[LIKES_KEY] != null) {
+      const likes = getTotalLikes()
+      if (likes >= likeLimit) {
+        setIsLikeAllowed(false)
+      }
+    }
+
     axios
       .request({
         method: "get",
-        url: `api/likes`,
+        url: `/v1/likes`,
         auth: {
           username: `${process.env.AVL_USERNAME}`,
           password: `${process.env.AVL_PASSWORD}`,
@@ -84,55 +95,77 @@ export default () => {
       })
   }, [])
 
+  function getTotalLikes() {
+    const likes = cookies[LIKES_KEY]
+    const likesArray = Object.values(likes)
+    const totalLikes = likesArray.reduce((sum, value) => sum + value)
+    return totalLikes
+  }
+
   function handleLike(resource) {
     return () => {
-      const cookie = cookies[LIKES_KEY]
-      if (cookie[resource] >= 50) {
+      const likes = getTotalLikes()
+      if (likes >= likeLimit) {
+        setIsLikeAllowed(false)
+        return
+      }
+
+      if (!isLikeAllowed) {
         return
       }
 
       if (resourceToUpdateMap[resource]) {
+        const cookie = cookies[LIKES_KEY]
         const { state, update } = resourceToUpdateMap[resource]
         update(state + 1)
         const incrementedResource = cookie[resource] + 1
         cookie[resource] = incrementedResource
         setCookie(LIKES_KEY, cookie, cookieSettings)
       }
-      axios
-        .request({
-          method: "post",
-          url: `/api/likes/${resource}`,
-          auth: {
-            username: `${process.env.AVL_USERNAME}`,
-            password: `${process.env.AVL_PASSWORD}`,
-          },
-        })
-        .then(data => {
-          console.log(data)
-        })
-        .catch(err => {
-          console.log(err)
-        })
+
+      // Anyway, I started blastinge
+      axios.request({
+        method: "post",
+        url: `/v1/likes/${resource}`,
+        auth: {
+          username: `${process.env.AVL_USERNAME}`,
+          password: `${process.env.AVL_PASSWORD}`,
+        },
+      })
     }
   }
 
-  const hasVoted = {
+  const format = (val, divident) => {
+    let formatted = `${(val / divident).toFixed(1)}`
+    const prepareLastDigitZero = formatted.split(".")
+    return prepareLastDigitZero[1] === "0" ? prepareLastDigitZero[0] : formatted
+  }
+  function formatLikesCount(count) {
+    if (count < 1000) {
+      return count
+    }
+    if (count >= 1000000) {
+      return `${format(count, 1000000)}M`
+    }
+    if (count >= 1000) {
+      return `${format(count, 1000)}K`
+    }
+  }
+
+  const hasLiked = {
     frontend: cookies[LIKES_KEY] ? cookies[LIKES_KEY]["frontend"] > 0 : false,
-    backend: cookies[LIKES_KEY] ? cookies[LIKES_KEY]["backend"] : false,
-    design: cookies[LIKES_KEY] ? cookies[LIKES_KEY]["design"] : false,
+    backend: cookies[LIKES_KEY] ? cookies[LIKES_KEY]["backend"] > 0 : false,
+    design: cookies[LIKES_KEY] ? cookies[LIKES_KEY]["design"] > 0 : false,
   }
 
   return (
-    <Skills>
+    <Skills id="features">
       <MaxWidthContainer>
         <SectionTitle color={colors.text.header.dark}>
           What can I do for you?
         </SectionTitle>
-        <SectionSubTitle>
-          Click on one of the cards to show some love!
-        </SectionSubTitle>
         <Cards>
-          <Card onClick={handleLike("frontend")}>
+          <Card>
             <CardTitle>Front end</CardTitle>
             <IconWrapper>
               <DesktopIcon />
@@ -141,14 +174,22 @@ export default () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
               nihil.
             </BodyText>
-            <CardLikes>
+            <CardLikes
+              onClick={handleLike("frontend")}
+              disabled={!isLikeAllowed}
+            >
               <HeartContainer>
-                {hasVoted["frontend"] ? <HeartIcon /> : <HeartOutlineIcon />}
+                {hasLiked["frontend"] ? <HeartIcon /> : <HeartOutlineIcon />}
               </HeartContainer>
-              <LikesCounter>{frontendLikes}</LikesCounter>
+              <LikesCounter>{formatLikesCount(frontendLikes)}</LikesCounter>
+              {!isLikeAllowed && (
+                <SmallHintText>
+                  I decided that you can like {likeLimit} times.
+                </SmallHintText>
+              )}
             </CardLikes>
           </Card>
-          <Card onClick={handleLike("backend")}>
+          <Card>
             <CardTitle>Back end</CardTitle>
             <IconWrapper>
               <DatabaseIcon />
@@ -157,14 +198,22 @@ export default () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
               nihil.
             </BodyText>
-            <CardLikes>
+            <CardLikes
+              onClick={handleLike("backend")}
+              disabled={!isLikeAllowed}
+            >
               <HeartContainer>
-                {hasVoted["backend"] ? <HeartIcon /> : <HeartOutlineIcon />}
+                {hasLiked["backend"] ? <HeartIcon /> : <HeartOutlineIcon />}
               </HeartContainer>
-              <LikesCounter>{backendLikes}</LikesCounter>
+              <LikesCounter>{formatLikesCount(backendLikes)}</LikesCounter>
+              {!isLikeAllowed && (
+                <SmallHintText>
+                  I decided that you can like {likeLimit} times.
+                </SmallHintText>
+              )}
             </CardLikes>
           </Card>
-          <Card onClick={handleLike("design")}>
+          <Card>
             <CardTitle>Design</CardTitle>
             <IconWrapper>
               <DesignIcon />
@@ -173,49 +222,60 @@ export default () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
               nihil.
             </BodyText>
-            <CardLikes>
+            <CardLikes onClick={handleLike("design")} disabled={!isLikeAllowed}>
               <HeartContainer>
-                {hasVoted["design"] ? <HeartIcon /> : <HeartOutlineIcon />}
+                {hasLiked["design"] ? <HeartIcon /> : <HeartOutlineIcon />}
               </HeartContainer>
-              <LikesCounter>{designLikes}</LikesCounter>
+              <LikesCounter>{formatLikesCount(designLikes)}</LikesCounter>
+              {!isLikeAllowed && (
+                <SmallHintText>
+                  I decided that you can like {likeLimit} times.
+                </SmallHintText>
+              )}
             </CardLikes>
           </Card>
         </Cards>
-        <ExtraMarginSectionTitle color={colors.text.header.dark}>
+        <SectionTitle color={colors.text.header.dark}>
           What motivates me?
-        </ExtraMarginSectionTitle>
+        </SectionTitle>
         <FeatureCards>
           <FeatureCard color="#DEDFE2" background="#3F3D56">
-            <FeatureTitle>Curiosity</FeatureTitle>
-            <FeatureBody>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt iscing elit, sed do eiusmod tempor
-              incididunt
-            </FeatureBody>
+            <TextSection>
+              <FeatureTitle>Curiosity</FeatureTitle>
+              <FeatureBody>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt iscing elit, sed do eiusmod tempor
+                incididunt
+              </FeatureBody>
+            </TextSection>
             <FeatureImage overhang>
-              <MasterplanImage />
+              <MasterplanImage role="img" aria-labelledby="curious-image" />
             </FeatureImage>
           </FeatureCard>
-          <FeatureCard background="#6C63FF" color="#E2E1FB">
-            <FeatureTitle>Personal growth</FeatureTitle>
-            <FeatureBody>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt iscing elit, sed do eiusmod tempor
-              incididunt
-            </FeatureBody>
+          <FeatureCard background="#6C63FF" color="#E2E1FB" reverse>
+            <TextSection>
+              <FeatureTitle>Personal growth</FeatureTitle>
+              <FeatureBody>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt iscing elit, sed do eiusmod tempor
+                incididunt
+              </FeatureBody>
+            </TextSection>
             <FeatureImage overhang>
-              <CertificateImage />
+              <CertificateImage role="img" aria-labelledby="growth-image" />
             </FeatureImage>
           </FeatureCard>
           <FeatureCard background="#E9F0FD" color="#2A5384">
-            <FeatureTitle>Teamwork</FeatureTitle>
-            <FeatureBody>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt iscing elit, sed do eiusmod tempor
-              incididunt
-            </FeatureBody>
+            <TextSection>
+              <FeatureTitle>Teamwork</FeatureTitle>
+              <FeatureBody>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt iscing elit, sed do eiusmod tempor
+                incididunt
+              </FeatureBody>
+            </TextSection>
             <FeatureImage>
-              <TeamImage />
+              <TeamImage role="img" aria-labelledby="team-image" />
             </FeatureImage>
           </FeatureCard>
         </FeatureCards>
@@ -224,6 +284,12 @@ export default () => {
     </Skills>
   )
 }
+const SmallHintText = styled.small`
+  margin-left: ${SPACING[3]};
+  color: #605208;
+  ${FONTSIZE[1]};
+  text-align: left;
+`
 
 const FeatureCards = styled.ul`
   list-style-type: none;
@@ -232,9 +298,25 @@ const FeatureCard = styled.li`
   color: ${({ color }) => color};
   background: ${({ background }) => background};
   border-radius: 12px;
-  padding: ${SPACING[6]};
+  padding: ${SPACING[4]};
+  padding-top: ${SPACING[5]};
   padding-bottom: 0;
   margin-bottom: ${SPACING[7]};
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    display: flex;
+    flex-direction: ${({ reverse }) => (reverse ? "row" : "row-reverse")};
+    padding: 0;
+  }
+`
+
+const TextSection = styled.section`
+  color: inherit;
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 ${SPACING[5]};
+  }
 `
 const FeatureTitle = styled.h3`
   ${headerShared};
@@ -242,14 +324,20 @@ const FeatureTitle = styled.h3`
   font-weight: ${WEIGHTS.REGULAR};
   color: inherit;
   letter-spacing: 0.06em;
-  margin-bottom: ${SPACING[4]};
+  margin-bottom: ${SPACING[2]};
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    margin-bottom: ${SPACING[4]};
+  }
 `
 const FeatureBody = styled.p`
   color: inherit;
   ${FONTSIZE[5]};
   letter-spacing: 0.06em;
   line-height: 160%;
-  margin-bottom: ${SPACING[4]};
+  margin-bottom: ${SPACING[1]};
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    margin-bottom: 0;
+  }
 `
 
 const withOverhang = css`
@@ -258,6 +346,17 @@ const withOverhang = css`
 `
 const FeatureImage = styled.div`
   ${({ overhang }) => overhang && withOverhang};
+  svg {
+    max-width: 100%;
+  }
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    padding: 0 ${SPACING[4]};
+    svg {
+      max-width: initial;
+      height: 320px;
+      width: 420px;
+    }
+  }
 `
 const IconWrapper = styled.div`
   margin-bottom: ${SPACING[5]};
@@ -265,15 +364,33 @@ const IconWrapper = styled.div`
 const Cards = styled.section`
   display: flex;
   flex-direction: column;
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    margin-bottom: ${SPACING[7]};
+    flex-direction: row;
+  }
 `
 const Card = styled.div`
-  background: white;
+  background: #fff;
   border-radius: 12px;
   width: 100%;
-  box-shadow: 0 4px 12px #00000019;
-  margin-bottom: ${SPACING[6]};
+  margin-bottom: ${SPACING[5]};
   padding: ${SPACING[5]};
-  cursor: pointer;
+  box-shadow: 0 0 8px #00000019;
+  transition: ${animationDurations.normal} ease;
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    margin-bottom: 0;
+    &:not(:last-of-type) {
+      margin-right: ${SPACING[3]};
+    }
+    &:hover {
+      box-shadow: 0 4px 12px 1px #00000025;
+    }
+  }
+  @media screen and (min-width: ${BREAKPOINTS.MD}) {
+    &:not(:last-of-type) {
+      margin-right: ${SPACING[5]};
+    }
+  }
 `
 const CardTitle = styled.h5`
   color: #343e56;
@@ -283,24 +400,46 @@ const CardTitle = styled.h5`
   letter-spacing: 0.06em;
   margin-bottom: ${SPACING[5]};
 `
-
-const CardLikes = styled.div`
-  display: inline-flex;
-  &:hover {
-    path {
-      fill: ${colors.heart.hover};
-    }
-  }
-`
-
 const HeartContainer = styled.span`
-  margin-right: 12px;
+  margin-right: ${SPACING[2]};
   display: flex;
+  background: #0000ff09;
+  border-radius: 50%;
+  padding: ${SPACING[2]};
+  cursor: pointer;
+  transition: ${animationDurations.normal} ease;
   path {
     transition: ${animationDurations.fast} ease;
     fill: ${colors.heart.idle};
   }
 `
+
+const CardLikes = styled.button`
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  background: none;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  ${HeartContainer} {
+    opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+  }
+
+  &:hover {
+    cursor: pointer;
+    path {
+      fill: ${({ disabled }) =>
+        disabled ? colors.heart.idle : colors.heart.hover};
+    }
+  }
+  &:active {
+    ${HeartContainer} {
+      transform: ${({ disabled }) => !disabled && "scale(0.9)"};
+    }
+  }
+`
+
 const LikesCounter = styled.span`
   color: #0e1b39;
   font-size: 18px;
@@ -324,21 +463,7 @@ export const SectionTitle = styled.h2`
     ${FONTSIZE[6]}
     font-weight:${WEIGHTS.REGULAR};
     color: ${({ color }) => (color ? color : "#252E41")};
-    margin-bottom:${SPACING[4]};
-`
-
-const ExtraMarginSectionTitle = styled(SectionTitle)`
-  margin-top: ${SPACING[1]};
-  margin-bottom: ${SPACING[6]};
-`
-
-const SectionSubTitle = styled.p`
-  ${FONTSIZE[5]};
-  color: ${colors.text.dark};
-  letter-spacing: 0.06em;
-  line-height: 150%;
-  font-weight: ${WEIGHTS.REGULAR};
-  margin-bottom: ${SPACING[6]};
+    margin-bottom:${SPACING[5]};
 `
 
 const LIKES_KEY = "__AVL_LIKES__"

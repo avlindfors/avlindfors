@@ -1,4 +1,6 @@
 import styled from "@emotion/styled"
+import { css } from "@emotion/core"
+import { Link } from "gatsby"
 import {
   colors,
   borderRadius,
@@ -8,22 +10,31 @@ import {
   SPACING,
 } from "../styles/variables"
 
-export const PrimaryButton = styled.button`
+const buttonShared = props => css`
   outline: none;
   border: none;
   font-family: "Poppins", sans-serif;
   letter-spacing: 0.1em;
   font-weight: ${WEIGHTS.MEDIUM};
-  background: ${({ background }) => background || colors.accent.main};
+  background: ${props.background || colors.accent.main};
   ${FONTSIZE[2]};
   border-radius: ${borderRadius};
   width: auto;
   padding: ${SPACING[3]};
   cursor: pointer;
   transition: ${animationDurations.normal} ease;
-  &:hover {
-    background: ${colors.accent.dark};
+  &:not(:disabled) {
+    &:hover {
+      background: ${colors.accent.dark};
+    }
   }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+`
+export const PrimaryButton = styled.button`
+  ${buttonShared};
 `
 
 export const HintButton = styled(PrimaryButton)`
@@ -34,4 +45,16 @@ export const HintButton = styled(PrimaryButton)`
   }
 `
 
+export const LinkButton = styled(Link)`
+  ${buttonShared};
+  text-decoration: none;
+`
+
+export const SecondaryLinkButton = styled(LinkButton)`
+  background: none;
+  text-decoration: underline;
+  &:hover {
+    background: #decbf70d !important;
+  }
+`
 export default { PrimaryButton, HintButton }

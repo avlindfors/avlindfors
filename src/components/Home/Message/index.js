@@ -1,136 +1,216 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "@emotion/styled"
 import { css } from "@emotion/core"
-import { Link } from "gatsby"
+import axios from "axios"
 
-import { HintLink } from "../../../styles/shared"
 import { PrimaryButton } from "../../Button"
 
 import EnvelopeImage from "../../../assets/images/undraw-envelope.inline.svg"
+import { maxWidthContainer } from "../../../styles/theme"
 import {
-  H1,
-  maxWidthContainer,
-  H2,
-  H6,
-  BodyText,
-  Flex,
-} from "../../../styles/theme"
-import {
-  colors,
   borderRadius,
   animationDurations,
   SPACING,
+  BREAKPOINTS,
+  FONTSIZE,
 } from "../../../styles/variables"
 import { SectionTitle } from "../Skills"
+import { ErrorText, Spinner, SuccessText } from "../../NewsLetter"
 
 export default () => {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
+
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [data, setData] = useState(null)
+
+  const setField = {
+    name: setName,
+    email: setEmail,
+    message: setMessage,
+  }
+
+  function getFirstFieldError(field) {
+    if (error == null) return
+    const errors = error.filter(item => {
+      const { param } = item
+      return param === field
+    })
+    return errors[0]
+  }
+
+  const handleChange = event => {
+    const { name, value } = event.target
+    setField[name](value)
+  }
+
   const handleSubmit = event => {
     event.preventDefault()
-    console.log("submitting")
+    if (loading) {
+      return
+    }
+    setLoading(true)
+    setData(null)
+    setError(null)
+    axios({
+      method: "post",
+      url: "/message",
+      data: {
+        name,
+        email,
+        message,
+      },
+      auth: {
+        username: `${process.env.AVL_USERNAME}`,
+        password: `${process.env.AVL_PASSWORD}`,
+      },
+    })
+      .then(() => {
+        setData("Message successfully sent!")
+        setError(null)
+      })
+      .catch(err => {
+        //console.log(err.response.data.errors)
+        setError(err.response.data.errors)
+        setData(null)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }
+  const canSubmit = email.length > 0 && name.length > 0 && message.length > 0
   return (
-    <Message>
-      <MessageForm name="message" onSubmit={handleSubmit}>
-        <SectionTitle color="#F3F3F3">Send me a message</SectionTitle>
-        <FormControl>
-          <FormLabel htmlFor="name">Name</FormLabel>
-          <FormInput id="name" placeholder="Alexander Lindfors"></FormInput>
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="email">Email</FormLabel>
-          <FormInput id="email" placeholder="alex@avlindfors.com"></FormInput>
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="message">Message</FormLabel>
-          <FormInput
-            textArea
-            id="message"
-            placeholder="I’m a software engineer with a passion for Front End Development and Design work. Use this form to contact me."
-          ></FormInput>
-        </FormControl>
-        <FormSubmit>
-          <PrimaryButton type="submit">Send</PrimaryButton>
-        </FormSubmit>
-      </MessageForm>
-      <ImageWrapper>
-        <EnvelopeImage />
-      </ImageWrapper>
-    </Message>
+    <MessageWrapper>
+      <Message>
+        <MessageForm name="message" onSubmit={handleSubmit}>
+          <ExtraMarginSectionTitle color="#F3F3F3">
+            Send me a message
+          </ExtraMarginSectionTitle>
+          <FormControl>
+            <FormLabel htmlFor="name">Name</FormLabel>
+            <FormInput
+              id="name"
+              name="name"
+              value={name}
+              onChange={handleChange}
+              placeholder="Alexander Lindfors"
+              maxLength={100}
+            />
+            {getFirstFieldError("name") && (
+              <LightErrorText>{getFirstFieldError("name").msg}</LightErrorText>
+            )}
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="email">Email</FormLabel>
+            <FormInput
+              id="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="alex@avlindfors.com"
+              maxLength={100}
+            />
+            {getFirstFieldError("email") && (
+              <LightErrorText>{getFirstFieldError("email").msg}</LightErrorText>
+            )}
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="message">Message</FormLabel>
+            <FormInput
+              textArea
+              id="message"
+              name="message"
+              value={message}
+              onChange={handleChange}
+              maxLength={500}
+              placeholder="I’m a software engineer with a passion for Front End Development and Design work. Use this form to contact me."
+            />
+            {getFirstFieldError("message") && (
+              <LightErrorText>
+                {getFirstFieldError("message").msg}
+              </LightErrorText>
+            )}
+            {data && <LightSuccessText>{data}</LightSuccessText>}
+          </FormControl>
+          <FormSubmit>
+            {loading && <SpinnerWithMargin trackColor={"#323B4E"} />}
+            <PrimaryButton type="submit" disabled={!canSubmit || loading}>
+              SEND
+            </PrimaryButton>
+          </FormSubmit>
+        </MessageForm>
+        <ImageWrapper>
+          <MessageImage role="img" aria-labelledby="message-image" />
+        </ImageWrapper>
+      </Message>
+    </MessageWrapper>
   )
 }
 
-const BackgroundSVGBlobs = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  &::after,
-  &::before {
-    content: "";
-    position: absolute;
-    z-index: -5;
-    height: 1000px;
-    width: 1000px;
-    border-radius: 200px;
-    transform: rotateZ(75deg);
-  }
-  &::after {
-    background: ${colors.blob.green};
-    opacity: 0.5;
-
-    right: 950px;
-    top: 800px;
-  }
-
-  &::before {
-    background: ${colors.blob.blue};
-    opacity: 0.75;
-    right: -800px;
-    bottom: -600px;
-  }
+const LightErrorText = styled(ErrorText)`
+  color: #e47a7a;
 `
+
+const LightSuccessText = styled(SuccessText)`
+  color: #7ce47a;
+`
+
 const Message = styled.section`
   ${maxWidthContainer};
-  padding: 0 ${SPACING[4]};
-  padding-top: ${SPACING[7]};
+  padding: ${SPACING[7]} ${SPACING[4]};
   display: flex;
   flex-direction: column;
-  position: relative;
+  align-items: center;
   z-index: 1;
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    flex-direction: row;
+    padding-top: ${SPACING[8]};
+    padding-bottom: ${SPACING[8]};
+  }
+`
+
+const MessageWrapper = styled.section`
+  background: linear-gradient(to bottom right, #080a1c, #161932);
+`
+
+const MessageImage = styled(EnvelopeImage)`
+  width: 100%;
 `
 const ImageWrapper = styled.div`
   display: flex;
-  width: 100%;
   justify-content: center;
   align-items: center;
-  margin-bottom:${SPACING[8]};
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    box-sizing: border-box;
+    flex-basis: 50%;
+    padding: 0;
+    padding-left: ${SPACING[7]};
+  }
 `
 
 const MessageForm = styled.form`
-  flex-grow: 1;
-  max-width: 500px;
-`
-
-const FormTitle = styled(H2)`
-  color: #f3f3f3;
-  font-weight: 300;
-  font-family: "Poppins", sans-serif;
-  margin-bottom: 24px;
+  width: 100%;
+  max-width: 600px;
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    width: auto;
+    max-width: initial;
+    flex-grow: 1;
+  }
 `
 
 const FormControl = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: ${SPACING[5]};
 `
 const FormLabel = styled.label`
   font-family: "Poppins", sans-serif;
   display: block;
-  font-size: 20px;
+  ${FONTSIZE[4]};
 
   letter-spacing: 0.06em;
   color: #f3f3f3;
-  margin-bottom: 12px;
+  margin-bottom: ${SPACING[2]};
 `
 
 const textSharedStyles = css`
@@ -174,28 +254,19 @@ const FormInput = ({ textArea, ...props }) => {
   }
 }
 
+const SpinnerWithMargin = styled(Spinner)`
+  margin-right: ${SPACING[3]};
+`
 const FormSubmit = styled.div`
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   margin-bottom: ${SPACING[6]};
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    margin-bottom: 0;
+  }
 `
 
-const UnderTheHoodSection = styled.section`
-  padding-bottom: 0;
-  z-index: 2;
-  margin-bottom: 140px;
-  margin-top: 20px;
-`
-const UnderTheHoodTitle = styled(H6)`
-  color: ${({ light }) => (light ? `#F3F3F3` : `#0a1121`)};
-  margin-bottom: 18px;
-  font-size: 20px;
-  letter-spacing: 0.1em;
-`
-const UnderTheHoodCopy = styled(BodyText)`
-  max-width: 600px;
-  z-index: 99;
-  margin-bottom: 0;
-  color: ${({ light }) => (light ? `#D7DAF4` : colors.text.dark)};
-  font-weight: 300;
+const ExtraMarginSectionTitle = styled(SectionTitle)`
+  margin-bottom: ${SPACING[3]};
 `

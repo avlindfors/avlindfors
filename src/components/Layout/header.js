@@ -177,7 +177,7 @@ const LinkItem = styled.li`
 
 const StyledNavLink = styled(Link)`
   font-family: "Poppins", sans-serif;
-  ${FONTSIZE[7]};
+  ${FONTSIZE[6]};
   color: ${colors.text.nav.idle};
   text-decoration: none;
   letter-spacing: 0.1em;

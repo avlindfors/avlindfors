@@ -1,12 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: `avlindfors`,
-    description: `Personal website of Software Engineer Alexander Lindfors`,
+    description: `Personal website and resume of Software Engineer Alexander Lindfors`,
     author: `Alexander Lindfors`,
-  },
-  proxy: {
-    prefix: "/api",
-    url: "http://localhost:3000",
   },
   plugins: [
     `gatsby-plugin-emotion`,
@@ -15,7 +11,7 @@ module.exports = {
       options: {
         fonts: [
           `poppins\:300,300i,400,400i,500,600,700`,
-          `source sans pro\:300,400,500,600,700`,
+          `source sans pro\:300,300i,,400,500,600,700`,
         ],
         display: "swap",
       },

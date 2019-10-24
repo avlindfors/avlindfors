@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "@emotion/styled"
 import { maxWidthContainer } from "../../styles/theme"
-import { colors, SPACING, FONTSIZE } from "../../styles/variables"
+import { colors, SPACING, FONTSIZE, BREAKPOINTS } from "../../styles/variables"
 
 import NewsLetter from "../NewsLetter"
 
@@ -21,38 +21,40 @@ export default () => (
     <NewsLetter />
     <Wrapper>
       <Footer>
-        <LogoSection>
-          <LogoWithText />
-        </LogoSection>
-        <SocialSection>
-          <SocialIcon>
-            <a
-              href="https://www.linkedin.com/in/alexander-lindfors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <LinkedinIcon />
-            </a>
-          </SocialIcon>
-          <SocialIcon>
-            <a
-              href="https://www.github.com/alindfor"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <GithubIcon />
-            </a>
-          </SocialIcon>
-          <SocialIcon>
-            <a
-              href="https://www.twitter.com/a_lindfors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <TwitterIcon />
-            </a>
-          </SocialIcon>
-        </SocialSection>
+        <LogoAndSocialContainer>
+          <LogoSection>
+            <LogoWithText />
+          </LogoSection>
+          <SocialSection>
+            <SocialIcon>
+              <a
+                href="https://www.linkedin.com/in/alexander-lindfors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LinkedinIcon />
+              </a>
+            </SocialIcon>
+            <SocialIcon>
+              <a
+                href="https://www.github.com/alindfor"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GithubIcon />
+              </a>
+            </SocialIcon>
+            <SocialIcon>
+              <a
+                href="https://www.twitter.com/a_lindfors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <TwitterIcon />
+              </a>
+            </SocialIcon>
+          </SocialSection>
+        </LogoAndSocialContainer>
         <LinkSection>
           <ContactSection>
             <Address>
@@ -132,16 +134,23 @@ const Wrapper = styled.footer`
 `
 const Footer = styled.section`
   ${maxWidthContainer};
-  padding: ${SPACING[6]} ${SPACING[4]};
+  padding: ${SPACING[7]} ${SPACING[4]};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    padding: ${SPACING[8]} ${SPACING[4]};
+    flex-direction: row;
+  }
 `
 
 const FullWidthSocialFooter = styled.footer`
   background: ${colors.main.footer.dark};
 `
 
+const LogoAndSocialContainer = styled.div`
+  flex-basis: 50%;
+`
 const SocialFooterContent = styled.div`
   ${maxWidthContainer};
   display: flex;
@@ -159,11 +168,16 @@ const LinkSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    flex-direction: row;
+  }
 `
 
 const BaseSection = styled.section`
-  &:not(:last-of-type) {
-    margin-bottom: ${SPACING[5]};
+  @media screen and (max-width: ${BREAKPOINTS.SM}) {
+    &:not(:last-of-type) {
+      margin-bottom: ${SPACING[5]};
+    }
   }
 `
 const LinkItem = styled.li`
@@ -209,7 +223,12 @@ const ContactItem = styled(LinkItem)`
 `
 const ContactBody = styled(LinkBody)``
 
-const PagesSection = styled(BaseSection)``
+const PagesSection = styled(BaseSection)`
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    margin-right: ${SPACING[3]};
+    padding-left: ${SPACING[2]};
+  }
+`
 const PagesList = styled(LinkList)``
 const PagesItem = styled(LinkItem)``
 

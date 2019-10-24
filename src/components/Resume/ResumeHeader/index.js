@@ -3,13 +3,19 @@ import styled from "@emotion/styled"
 import { css } from "@emotion/core"
 import Avatar from "../../../assets/images/undraw-avatar.inline.svg"
 import { maxWidthContainer, headerShared } from "../../../styles/theme"
-import { FONTSIZE, SPACING, WEIGHTS, colors } from "../../../styles/variables"
+import {
+  FONTSIZE,
+  SPACING,
+  WEIGHTS,
+  colors,
+  BREAKPOINTS,
+} from "../../../styles/variables"
 
 export default () => {
   return (
     <ResumeHeader>
       <AvatarContainer>
-        <AvatarImage />
+        <AvatarImage role="img" aria-labelledby="avatar-image" />
       </AvatarContainer>
       <SummaryContainer>
         <SummaryTitleContainer>
@@ -45,7 +51,7 @@ export default () => {
         <section>
           <SummaryDataTitle>Toolkit</SummaryDataTitle>
           <MarginBottomTableText>
-            React, JavaScript, HTML, CSS, Node, Express, Java, Python
+            React, JavaScript, HTML, CSS, Node, Express, Python, Erlang, Java
           </MarginBottomTableText>
           <MarginBottomTableText>
             MongoDB, Firebase, SQL, Docker, GitHub, AWS
@@ -62,12 +68,18 @@ const AccentedMoreText = styled.p`
   color: ${colors.accent.main};
   letter-spacing: 0.1em;
   margin-bottom: ${SPACING[6]};
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    margin-bottom: ${SPACING[7]};
+  }
 `
 
 const TableText = styled.p`
   ${FONTSIZE[3]};
   color: #ffffff;
   letter-spacing: 0.1em;
+  @media screen and (min-width: ${BREAKPOINTS.XS}) {
+    ${FONTSIZE[4]};
+  }
 `
 const MarginBottomTableText = styled(TableText)`
   margin-bottom: ${SPACING[2]};
@@ -88,15 +100,37 @@ const ResumeHeader = styled.div`
   ${maxWidthContainer};
   display: flex;
   flex-direction: column;
-  //padding: ${SPACING[4]};
+  @media screen and (min-width: ${BREAKPOINTS.XS}) {
+    flex-direction: row;
+  }
 `
 
 const AvatarImage = styled(Avatar)`
   width: 100px;
   height: 100px;
+  transition: 250ms ease;
+  @media screen and (min-width: ${BREAKPOINTS.XS}) {
+    width: 150px;
+    height: 150px;
+    float: right;
+  }
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    width: 200px;
+    height: 200px;
+  }
 `
 const AvatarContainer = styled.div`
   margin-bottom: ${SPACING[4]};
+  transition:250ms ease;
+  @media screen and (min-width: ${BREAKPOINTS.XS}) {
+    margin-bottom: 0;
+    margin-right: ${SPACING[5]};
+    flex-basis: 150px;
+  }
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    flex-basis: 250px;
+    margin-right: ${SPACING[7]};
+  }
 `
 const SummaryContainer = styled.div`
   flex-grow: 1;
@@ -104,10 +138,12 @@ const SummaryContainer = styled.div`
 const SummaryTitleContainer = styled.header``
 const SummaryTitle = styled.h1`
   ${headerShared};
-  ${FONTSIZE[6]};
   color: #6c63ff;
   line-height: 1;
   margin-bottom: ${SPACING[2]};
+  @media screen and (min-width: ${BREAKPOINTS.XS}) {
+    ${FONTSIZE[9]};
+  }
 `
 const SummaryProfession = styled.p`
   ${titleText};
@@ -115,7 +151,10 @@ const SummaryProfession = styled.p`
   text-transform: uppercase;
   color: #d1d5f8;
   font-weight: 300;
-  margin-bottom: ${SPACING[3]}
+  margin-bottom: ${SPACING[3]};
+  @media screen and (min-width: ${BREAKPOINTS.XS}) {
+    ${FONTSIZE[4]};
+  }
 `
 const B = styled.b`
   font-weight: 400;
@@ -124,9 +163,12 @@ const B = styled.b`
 
 const SummaryData = styled.span``
 const SummaryDataTitle = styled.h5`
-  ${titleText};
   ${FONTSIZE[5]};
+  ${titleText};
   font-weight: ${WEIGHTS.REGULAR};
   color: #d8dbf5;
-  margin-bottom: 6px;
+  margin-bottom: ${SPACING[1]};
+  @media screen and (min-width: ${BREAKPOINTS.XS}) {
+    ${FONTSIZE[6]};
+  }
 `

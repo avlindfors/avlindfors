@@ -1,6 +1,5 @@
 /* @jsx jsx */
 import React from "react"
-import styled from "@emotion/styled"
 // eslint-disable-next-line
 import { Global, jsx } from "@emotion/core"
 
