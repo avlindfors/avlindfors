@@ -30,13 +30,13 @@ export default () => {
 
     axios({
       method: "post",
-      url: `${process.env.API_ENDPOINT}/subscribe`,
+      url: `${process.env.GATSBY_API_ENDPOINT}/subscribe`,
       data: {
         email,
       },
       auth: {
-        username: `${process.env.AVL_USERNAME}`,
-        password: `${process.env.AVL_PASSWORD}`,
+        username: `${process.env.GATSBY_AVL_USERNAME}`,
+        password: `${process.env.GATSBY_AVL_PASSWORD}`,
       },
       timeout: 5000,
     })

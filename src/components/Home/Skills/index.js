@@ -75,10 +75,10 @@ export default () => {
     axios
       .request({
         method: "get",
-        url: `${process.env.API_ENDPOINT}/likes`,
+        url: `${process.env.GATSBY_API_ENDPOINT}/likes`,
         auth: {
-          username: `${process.env.AVL_USERNAME}`,
-          password: `${process.env.AVL_PASSWORD}`,
+          username: `${process.env.GATSBY_AVL_USERNAME}`,
+          password: `${process.env.GATSBY_AVL_PASSWORD}`,
         },
         timeout: 5000,
       })
@@ -127,10 +127,10 @@ export default () => {
       // Anyway, I started blasting
       axios.request({
         method: "post",
-        url: `${process.env.API_ENDPOINT}/likes/${resource}`,
+        url: `${process.env.GATSBY_API_ENDPOINT}/likes/${resource}`,
         auth: {
-          username: `${process.env.AVL_USERNAME}`,
-          password: `${process.env.AVL_PASSWORD}`,
+          username: `${process.env.GATSBY_AVL_USERNAME}`,
+          password: `${process.env.GATSBY_AVL_PASSWORD}`,
         },
         timeout: 5000,
       })
