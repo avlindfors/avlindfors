@@ -107,7 +107,7 @@ const Hero = styled.section`
     padding-top: ${SPACING[7]};
   }
   @media screen and (min-width: ${BREAKPOINTS.LG}) {
-    padding-top: ${SPACING[8]};
+    padding-top: ${SPACING[6]};
   }
 `
 
