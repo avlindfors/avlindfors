@@ -103,7 +103,7 @@ export default () => {
   }
   const canSubmit = email.length > 0 && name.length > 0 && message.length > 0
   return (
-    <MessageWrapper>
+    <MessageWrapper id="message-section">
       <Message>
         <MessageForm name="message" onSubmit={handleSubmit}>
           <ExtraMarginSectionTitle color="#F3F3F3">
@@ -191,7 +191,7 @@ const Message = styled.section`
   @media screen and (min-width: ${BREAKPOINTS.SM}) {
     flex-direction: row;
     padding-top: ${SPACING[8]};
-    padding-bottom: ${SPACING[8]};
+    padding-bottom: ${SPACING[9]};
   }
 `
 

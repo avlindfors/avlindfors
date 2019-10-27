@@ -23,7 +23,7 @@ import {
 import HeartIcon from "../../../assets/icons/heart.inline.svg"
 import HeartOutlineIcon from "../../../assets/icons/heart-outline.inline.svg"
 import DesktopIcon from "../../../assets/icons/desktop.inline.svg"
-import DatabaseIcon from "../../../assets/icons/database.inline.svg"
+import DatabaseIcon from "../../../assets/icons/server.inline.svg"
 import DesignIcon from "../../../assets/icons/pencil-ruler.inline.svg"
 
 // Card Images
@@ -362,6 +362,18 @@ const FeatureImage = styled.div`
 `
 const IconWrapper = styled.div`
   margin-bottom: ${SPACING[5]};
+  padding: 24px;
+  border-radius: 12px;
+  background: ${colors.accent.main}09;
+
+  svg {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    path {
+      color: ${colors.accent.main};
+    }
+  }
 `
 const Cards = styled.section`
   display: flex;
@@ -400,7 +412,7 @@ const CardTitle = styled.h5`
   ${FONTSIZE[6]}
   font-weight: ${WEIGHTS.REGULAR};
   letter-spacing: 0.06em;
-  margin-bottom: ${SPACING[5]};
+  margin-bottom: ${SPACING[4]};
 `
 const HeartContainer = styled.span`
   margin-right: ${SPACING[2]};
@@ -458,6 +470,9 @@ const MaxWidthContainer = styled.div`
   flex-direction: column;
   padding: 0 ${SPACING[4]};
   padding-top: ${SPACING[7]};
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    padding-top: ${SPACING[7]};
+  }
 `
 
 export const SectionTitle = styled.h2`

@@ -9,7 +9,7 @@ import {
   BREAKPOINTS,
 } from "../../../styles/variables"
 import { HintLink } from "../../../styles/shared"
-import { PrimaryButton } from "../../Button"
+import { PrimaryButton, LinkButton } from "../../Button"
 
 import quoteImage from "../../../assets/images/quote.svg"
 
@@ -22,7 +22,7 @@ export default () => {
           and as a person.
         </CenteredQuote>
         <CenteredButtons>
-          <PrimaryButton type="button">GET IN TOUCH</PrimaryButton>
+          <LinkButton type="button" to="#message-section">GET IN TOUCH</LinkButton>
           <DarkHintLink to="/resume">See resume</DarkHintLink>
         </CenteredButtons>
       </MaxWidthContainer>

@@ -11,11 +11,22 @@ import {
   BREAKPOINTS,
 } from "../../../styles/variables"
 
+import File from "../../../assets/icons/file.inline.svg"
+import ResumePDF from "../../../assets/files/resume.pdf"
+
 export default () => {
   return (
     <ResumeHeader>
       <AvatarContainer>
         <AvatarImage role="img" aria-labelledby="avatar-image" />
+        <DownloadLink
+          href={ResumePDF}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <DownloadText>Download as PDF</DownloadText>
+          <FileIcon />
+        </DownloadLink>
       </AvatarContainer>
       <SummaryContainer>
         <SummaryTitleContainer>
@@ -109,20 +120,59 @@ const AvatarImage = styled(Avatar)`
   width: 100px;
   height: 100px;
   transition: 250ms ease;
+  margin-right: ${SPACING[5]};
   @media screen and (min-width: ${BREAKPOINTS.XS}) {
     width: 150px;
     height: 150px;
     float: right;
+    margin-right: 0;
+    margin-bottom: ${SPACING[5]};
   }
   @media screen and (min-width: ${BREAKPOINTS.SM}) {
     width: 200px;
     height: 200px;
   }
 `
+
+const DownloadLink = styled.a`
+  ${FONTSIZE[3]};
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  transition: 250ms ease;
+  border-radius: 4px;
+  color: ${colors.text.main};
+  text-decoration: none;
+  background: #decbf705;
+  white-space: nowrap;
+  &:hover {
+    background: #decbf70d;
+  }
+`
+const FileIcon = styled(File)`
+  width: 16px;
+  path {
+    color: ${colors.text};
+  }
+  @media screen and (min-width: ${BREAKPOINTS.XS}) {
+    width: 14px;
+  }
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+  }
+`
+
+const DownloadText = styled.span`
+  margin-right: ${SPACING[3]};
+`
 const AvatarContainer = styled.div`
   margin-bottom: ${SPACING[4]};
-  transition:250ms ease;
+  transition: 250ms ease;
+  display: flex;
+  align-items: center;
   @media screen and (min-width: ${BREAKPOINTS.XS}) {
+    align-items: flex-start;
+    flex-direction: column;
     margin-bottom: 0;
     margin-right: ${SPACING[5]};
     flex-basis: 150px;
@@ -130,6 +180,7 @@ const AvatarContainer = styled.div`
   @media screen and (min-width: ${BREAKPOINTS.SM}) {
     flex-basis: 250px;
     margin-right: ${SPACING[7]};
+    align-items: center;
   }
 `
 const SummaryContainer = styled.div`
