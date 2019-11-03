@@ -228,9 +228,9 @@ export default () => {
             <TextSection>
               <FeatureTitle>Curiosity</FeatureTitle>
               <FeatureBody>
-                I am always looking for new things to learn and new areas to
+                I am always looking for things to learn and interesting areas to
                 explore. I feed my curiosity by reading, researching and
-                building software with technologies that are new to me. I
+                building software with technologies that I haven't used before. I
                 believe that keeping an open mind to new ideas is the best way
                 to expand your way of thinking.
               </FeatureBody>
@@ -243,7 +243,7 @@ export default () => {
             <TextSection>
               <FeatureTitle>Personal growth</FeatureTitle>
               <FeatureBody>
-                As an engineer, growing my personal and soft skills are as
+                As an engineer, growing my personal skills are as
                 important to me as learning more about my profession. I want to
                 take an active part in my growth and work towards mutual success,
                 not only for myself but for those around me.
