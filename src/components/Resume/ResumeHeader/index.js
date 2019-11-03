@@ -14,7 +14,7 @@ import {
 } from "../../../styles/variables"
 
 import File from "../../../assets/icons/file.inline.svg"
-import ResumePDF from "../../../assets/files/resume.pdf"
+import ResumePDF from "../../../assets/files/alexander_lindfors_resume.pdf"
 
 const query = graphql`
   query {
