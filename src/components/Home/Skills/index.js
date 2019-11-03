@@ -90,9 +90,6 @@ export default () => {
           }
         })
       })
-      .catch(err => {
-        console.log(err)
-      })
   }, [cookies, resourceToUpdateMap, setCookie])
 
   function getTotalLikes() {
@@ -230,8 +227,8 @@ export default () => {
               <FeatureBody>
                 I am always looking for things to learn and interesting areas to
                 explore. I feed my curiosity by reading, researching and
-                building software with technologies that I haven't used before. I
-                believe that keeping an open mind to new ideas is the best way
+                building software with technologies that I haven't used before.
+                I believe that keeping an open mind to new ideas is the best way
                 to expand your way of thinking.
               </FeatureBody>
             </TextSection>
@@ -243,10 +240,10 @@ export default () => {
             <TextSection>
               <FeatureTitle>Personal growth</FeatureTitle>
               <FeatureBody>
-                As an engineer, growing my personal skills are as
-                important to me as learning more about my profession. I want to
-                take an active part in my growth and work towards mutual success,
-                not only for myself but for those around me.
+                As an engineer, growing my personal skills are as important to
+                me as learning more about my profession. I want to take an
+                active part in my growth and work towards mutual success, not
+                only for myself but for those around me.
               </FeatureBody>
             </TextSection>
             <FeatureImage overhang>
