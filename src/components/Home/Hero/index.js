@@ -1,6 +1,5 @@
 /** @jsx jsx  */
 import styled from "@emotion/styled"
-import { Link } from "gatsby"
 import { jsx } from "@emotion/core"
 
 import ArrowIcon from "../../../assets/icons/arrow.inline.svg"
@@ -33,13 +32,14 @@ export default () => {
             I’m a software engineer with a passion for UI design
           </PageSubtitle>
           <PageBodyText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua,
-            consectetur adipiscing elit, sed do eiusmo.
+            I am a Swedish software enginner with an interest in UI design. I
+            mainly do front end work but I also enjoy working with back end
+            technologies. I built this website as a work sample to show how I
+            work and what I can do.
           </PageBodyText>
           <RightAligned>
             <LinkButton to="/#features">Read more</LinkButton>
-            <MarginSecondaryLinkButton to="/#message-section">
+            <MarginSecondaryLinkButton to="/#contact">
               Contact me
             </MarginSecondaryLinkButton>
           </RightAligned>
@@ -58,6 +58,7 @@ export default () => {
 
 const MarginSecondaryLinkButton = styled(SecondaryLinkButton)`
   margin-left: ${SPACING[3]};
+  text-decoration: none;
 `
 const AnimatedArrowIcon = styled(ArrowIcon)`
   @keyframes bounce {

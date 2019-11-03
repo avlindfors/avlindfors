@@ -115,7 +115,7 @@ function Message({ data: { overviewJson } }) {
   }
   const canSubmit = email.length > 0 && name.length > 0 && message.length > 0
   return (
-    <MessageWrapper id="message-section">
+    <MessageWrapper id="contact">
       <MessageSection>
         <MessageForm name="message" onSubmit={handleSubmit}>
           <ExtraMarginSectionTitle color="#F3F3F3">

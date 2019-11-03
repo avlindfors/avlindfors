@@ -11,12 +11,11 @@ import {
 } from "../styles/variables"
 
 const buttonShared = props => css`
-  outline: none;
   border: none;
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-weight: ${WEIGHTS.REGULAR};
+  font-weight: ${WEIGHTS.MEDIUM};
   background: ${props.background || colors.accent.main};
   ${FONTSIZE[2]};
   border-radius: ${borderRadius};
@@ -54,7 +53,7 @@ export const LinkButton = styled(Link)`
 
 export const SecondaryLinkButton = styled(LinkButton)`
   background: none;
-  text-decoration: underline;
+  text-decoration: none;
   &:hover {
     background: #decbf70d !important;
   }

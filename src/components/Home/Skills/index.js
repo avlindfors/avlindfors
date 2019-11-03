@@ -1,8 +1,7 @@
-/* @jsx jsx */
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import styled from "@emotion/styled"
-import { css, jsx } from "@emotion/core"
+import { css } from "@emotion/core"
 import { useCookies } from "react-cookie"
 
 import {
@@ -94,7 +93,7 @@ export default () => {
       .catch(err => {
         console.log(err)
       })
-  }, [])
+  }, [cookies, resourceToUpdateMap, setCookie])
 
   function getTotalLikes() {
     const likes = cookies[LIKES_KEY]
@@ -124,7 +123,6 @@ export default () => {
         setCookie(LIKES_KEY, cookie, cookieSettings)
       }
 
-      // Anyway, I started blasting
       axios.request({
         method: "post",
         url: `${process.env.GATSBY_API_ENDPOINT}/likes/${resource}`,
@@ -163,9 +161,7 @@ export default () => {
   return (
     <Skills id="features">
       <MaxWidthContainer>
-        <SectionTitle color={colors.text.header.dark}>
-          What can I do for you?
-        </SectionTitle>
+        <SectionTitle color={colors.text.header.dark}>What I do</SectionTitle>
         <Cards>
           <Card>
             <CardTitle>Front end</CardTitle>
@@ -173,9 +169,11 @@ export default () => {
               <DesktopIcon />
             </IconWrapper>
             <BodyText>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-              nihil.
+              I use HTML, CSS and JavaScript to create engaging user
+              experiences. My framework of choice is React. This site was built
+              using Gatsby to create a blazing fast static site.
             </BodyText>
+
             <CardLikes
               onClick={handleLike("frontend")}
               disabled={!isLikeAllowed}
@@ -184,11 +182,6 @@ export default () => {
                 {hasLiked["frontend"] ? <HeartIcon /> : <HeartOutlineIcon />}
               </HeartContainer>
               <LikesCounter>{formatLikesCount(frontendLikes)}</LikesCounter>
-              {!isLikeAllowed && (
-                <SmallHintText>
-                  I decided that you can like {likeLimit} times.
-                </SmallHintText>
-              )}
             </CardLikes>
           </Card>
           <Card>
@@ -197,8 +190,9 @@ export default () => {
               <DatabaseIcon />
             </IconWrapper>
             <BodyText>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-              nihil.
+              I use Node and Express to power my back end needs. For this
+              project I built an Express server to power likes, sending messages
+              and subscribing.
             </BodyText>
             <CardLikes
               onClick={handleLike("backend")}
@@ -208,11 +202,6 @@ export default () => {
                 {hasLiked["backend"] ? <HeartIcon /> : <HeartOutlineIcon />}
               </HeartContainer>
               <LikesCounter>{formatLikesCount(backendLikes)}</LikesCounter>
-              {!isLikeAllowed && (
-                <SmallHintText>
-                  I decided that you can like {likeLimit} times.
-                </SmallHintText>
-              )}
             </CardLikes>
           </Card>
           <Card>
@@ -221,33 +210,29 @@ export default () => {
               <DesignIcon />
             </IconWrapper>
             <BodyText>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-              nihil.
+              I like creating UI designs before I implement a website or an app.
+              For this project I've used Figma to design the website's logo and
+              layout.
             </BodyText>
             <CardLikes onClick={handleLike("design")} disabled={!isLikeAllowed}>
               <HeartContainer>
                 {hasLiked["design"] ? <HeartIcon /> : <HeartOutlineIcon />}
               </HeartContainer>
               <LikesCounter>{formatLikesCount(designLikes)}</LikesCounter>
-              {!isLikeAllowed && (
-                <SmallHintText>
-                  I decided that you can like {likeLimit} times.
-                </SmallHintText>
-              )}
             </CardLikes>
           </Card>
         </Cards>
-        <SectionTitle color={colors.text.header.dark}>
-          What motivates me?
-        </SectionTitle>
+        <SectionTitle color={colors.text.header.dark}>Why I do it</SectionTitle>
         <FeatureCards>
           <FeatureCard color="#DEDFE2" background="#3F3D56">
             <TextSection>
               <FeatureTitle>Curiosity</FeatureTitle>
               <FeatureBody>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt iscing elit, sed do eiusmod tempor
-                incididunt
+                I am always looking for new things to learn and new areas to
+                explore. I feed my curiosity by reading, researching and
+                building software with technologies that are new to me. I
+                believe that keeping an open mind to new ideas is the best way
+                to expand your way of thinking.
               </FeatureBody>
             </TextSection>
             <FeatureImage overhang>
@@ -258,9 +243,10 @@ export default () => {
             <TextSection>
               <FeatureTitle>Personal growth</FeatureTitle>
               <FeatureBody>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt iscing elit, sed do eiusmod tempor
-                incididunt
+                As an engineer, growing my personal and soft skills are as
+                important to me as learning more about my profession. I want to
+                take an active part in my growth and work towards mutual succes,
+                not only for myself but for those around me.
               </FeatureBody>
             </TextSection>
             <FeatureImage overhang>
@@ -269,11 +255,12 @@ export default () => {
           </FeatureCard>
           <FeatureCard background="#E9F0FD" color="#2A5384">
             <TextSection>
-              <FeatureTitle>Teamwork</FeatureTitle>
+              <FeatureTitle>Exchanging experiences</FeatureTitle>
               <FeatureBody>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt iscing elit, sed do eiusmod tempor
-                incididunt
+                I believe that software development is about more than writing
+                code. It is about working with people with different backgrounds
+                and ideas to create something together that one individual could
+                not achieve alone.
               </FeatureBody>
             </TextSection>
             <FeatureImage>
@@ -286,12 +273,6 @@ export default () => {
     </Skills>
   )
 }
-const SmallHintText = styled.small`
-  margin-left: ${SPACING[3]};
-  color: #605208;
-  ${FONTSIZE[1]};
-  text-align: left;
-`
 
 const FeatureCards = styled.ul`
   list-style-type: none;
@@ -317,23 +298,23 @@ const TextSection = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 ${SPACING[5]};
+    padding: 0 ${SPACING[6]};
   }
 `
 const FeatureTitle = styled.h3`
   ${headerShared};
   ${FONTSIZE[6]};
-  font-weight: ${WEIGHTS.REGULAR};
+  font-weight: ${WEIGHTS.MEDIUM};
   color: inherit;
   letter-spacing: 0.06em;
   margin-bottom: ${SPACING[2]};
   @media screen and (min-width: ${BREAKPOINTS.SM}) {
-    margin-bottom: ${SPACING[4]};
+    margin-bottom: ${SPACING[2]};
   }
 `
 const FeatureBody = styled.p`
   color: inherit;
-  ${FONTSIZE[5]};
+  ${FONTSIZE[4]};
   letter-spacing: 0.06em;
   line-height: 160%;
   margin-bottom: ${SPACING[1]};
@@ -361,7 +342,7 @@ const FeatureImage = styled.div`
   }
 `
 const IconWrapper = styled.div`
-  margin-bottom: ${SPACING[5]};
+  margin-bottom: ${SPACING[4]};
   padding: 24px;
   border-radius: 12px;
   background: ${colors.accent.main}09;
@@ -409,7 +390,7 @@ const Card = styled.div`
 const CardTitle = styled.h5`
   color: #343e56;
   font-family: "Poppins", sans-serif;
-  ${FONTSIZE[6]}
+  ${FONTSIZE[5]}
   font-weight: ${WEIGHTS.REGULAR};
   letter-spacing: 0.06em;
   margin-bottom: ${SPACING[4]};
@@ -420,7 +401,6 @@ const HeartContainer = styled.span`
   background: #0000ff09;
   border-radius: 50%;
   padding: ${SPACING[2]};
-  cursor: pointer;
   transition: ${animationDurations.normal} ease;
   path {
     transition: ${animationDurations.fast} ease;
@@ -434,14 +414,13 @@ const CardLikes = styled.button`
   align-items: center;
   background: none;
   border: none;
-  outline: none;
   border-radius: 4px;
   ${HeartContainer} {
     opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   }
 
   &:hover {
-    cursor: pointer;
+    cursor: ${({ disabled }) => (!disabled ? "pointer" : "not-allowed")};
     path {
       fill: ${({ disabled }) =>
         disabled ? colors.heart.idle : colors.heart.hover};

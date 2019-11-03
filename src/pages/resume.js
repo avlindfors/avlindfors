@@ -1,5 +1,4 @@
 /** @jsx jsx  */
-import React from "react"
 import styled from "@emotion/styled"
 import { css, jsx } from "@emotion/core"
 
@@ -43,7 +42,6 @@ export const query = graphql`
 
 export default function Resume({ data }) {
   const {
-    overviewJson: overview,
     resumeJson: { education, experience },
   } = data
   return (
@@ -154,8 +152,6 @@ const ResumeSectionRole = styled(ResumeSectionInfo)`
 `
 
 const ResumeSectionBody = styled.p`
-  font-weight: 300;
-  font-style: italic;
   line-height: 1.6em;
   color: #daddf7;
   ${FONTSIZE[3]};

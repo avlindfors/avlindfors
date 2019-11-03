@@ -49,12 +49,12 @@ export const BodyText = styled.p`
   ${FONTSIZE[4]};
   line-height: 1.6em;
   letter-spacing: 0.06em;
-  margin-bottom: ${SPACING[5]};
+  margin-bottom: ${SPACING[3]};
 `
 
 export const Flex = styled.div`
-  display:flex;
-  flex-direction: ${({direction}) => direction && direction};
-  justify-content: ${({justifyContent}) => justifyContent && justifyContent};
-  align-items: ${({alignItems}) => alignItems && alignItems};
-`;
+  display: flex;
+  flex-direction: ${({ direction }) => direction && direction};
+  justify-content: ${({ justifyContent }) => justifyContent && justifyContent};
+  align-items: ${({ alignItems }) => alignItems && alignItems};
+`

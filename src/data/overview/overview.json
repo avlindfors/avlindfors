@@ -6,6 +6,6 @@
   "languages": "Swedish, English, Japanese",
   "toolkit": {
     "main": "React, JavaScript, HTML, CSS, Node, Express, Python, Erlang, Java",
-    "other": "MongoDB, Firebase, SQL, Docker, GitHub, AWS"
+    "other": "Git, Docker, Aws, Firebase, SQL, MongoDB"
   }
 }

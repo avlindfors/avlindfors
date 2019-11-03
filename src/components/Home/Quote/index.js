@@ -9,7 +9,7 @@ import {
   BREAKPOINTS,
 } from "../../../styles/variables"
 import { HintLink } from "../../../styles/shared"
-import { PrimaryButton, LinkButton } from "../../Button"
+import { LinkButton } from "../../Button"
 
 import quoteImage from "../../../assets/images/quote.svg"
 
@@ -22,7 +22,9 @@ export default () => {
           and as a person.
         </CenteredQuote>
         <CenteredButtons>
-          <LinkButton type="button" to="#message-section">GET IN TOUCH</LinkButton>
+          <LinkButton type="button" to="#message-section">
+            GET IN TOUCH
+          </LinkButton>
           <DarkHintLink to="/resume">See resume</DarkHintLink>
         </CenteredButtons>
       </MaxWidthContainer>
@@ -74,7 +76,7 @@ const DarkHintLink = styled(HintLink)`
 `
 
 const Quote = styled.section`
-  background: #F6F6FD;
+  background: #f6f6fd;
 `
 
 const MaxWidthContainer = styled.div`
