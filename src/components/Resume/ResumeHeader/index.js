@@ -14,7 +14,6 @@ import {
 } from "../../../styles/variables"
 
 import File from "../../../assets/icons/file.inline.svg"
-import ResumePDF from "../../../assets/files/alexander_lindfors_resume.pdf"
 
 const query = graphql`
   query {
@@ -45,7 +44,7 @@ function ResumeHeader({ overview }) {
       <AvatarContainer>
         <AvatarImage role="img" aria-labelledby="avatar-image" />
         <DownloadLink
-          href={ResumePDF}
+          href="/alexander_lindfors_resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >
