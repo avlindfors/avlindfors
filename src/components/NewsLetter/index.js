@@ -38,7 +38,7 @@ export default () => {
         username: `${process.env.GATSBY_AVL_USERNAME}`,
         password: `${process.env.GATSBY_AVL_PASSWORD}`,
       },
-      timeout: 5000,
+      timeout: 10000,
     })
       .then(({ data }) => {
         const { message } = data
