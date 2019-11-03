@@ -26,8 +26,8 @@ const Blog = () => (
           This is where I will put blog posts. At some point.{" "}
         </PageSubtitle>
         <PageBodyText>
-          In the meantime you can check out my resume or sign up for my
-          newsletter. That way you will be the first to know when this page is
+          In the meantime you can check out my resume or sign up for
+          notifications. That way you will be the first to know when this page is
           ready!
         </PageBodyText>
         <RightAligned>

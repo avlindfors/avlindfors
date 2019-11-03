@@ -1,0 +1,11 @@
+{
+  "phoneNumber": "+8180 4989 6399",
+  "email": "alex@avlindfors.com",
+  "location": "Tokyo, Japan",
+  "degree": "BSc in Computer Science",
+  "languages": "Swedish, English, Japanese",
+  "toolkit": {
+    "main": "React, JavaScript, HTML, CSS, Node, Express, Python, Erlang, Java",
+    "other": "MongoDB, Firebase, SQL, Docker, GitHub, AWS"
+  }
+}

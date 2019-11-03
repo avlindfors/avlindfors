@@ -2,9 +2,9 @@ import React, { useState } from "react"
 import styled from "@emotion/styled"
 import { css } from "@emotion/core"
 import axios from "axios"
+import { StaticQuery, graphql } from "gatsby"
 
 import { PrimaryButton } from "../../Button"
-
 import EnvelopeImage from "../../../assets/images/undraw-envelope.inline.svg"
 import { maxWidthContainer } from "../../../styles/theme"
 import {
@@ -16,8 +16,21 @@ import {
 } from "../../../styles/variables"
 import { SectionTitle } from "../Skills"
 import { ErrorText, Spinner, SuccessText } from "../../NewsLetter"
+import { PageBodyText } from "../Hero"
 
-export default () => {
+const query = graphql`
+  query {
+    overviewJson {
+      email
+    }
+  }
+`
+export default () => (
+  <StaticQuery query={query} render={data => <Message data={data} />} />
+)
+function Message({ data: { overviewJson } }) {
+  const { email: myEmail } = overviewJson
+
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [message, setMessage] = useState("")
@@ -69,7 +82,6 @@ export default () => {
       timeout: 5000,
     })
       .then(data => {
-        console.log(data)
         setData("Message successfully sent!")
         setError(null)
       })
@@ -104,11 +116,22 @@ export default () => {
   const canSubmit = email.length > 0 && name.length > 0 && message.length > 0
   return (
     <MessageWrapper id="message-section">
-      <Message>
+      <MessageSection>
         <MessageForm name="message" onSubmit={handleSubmit}>
           <ExtraMarginSectionTitle color="#F3F3F3">
             Send me a message
           </ExtraMarginSectionTitle>
+          <MessageBodyText>
+            Fill in the form below and an email will be sent to{" "}
+            <a
+              href={`mailto:${myEmail}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {myEmail}
+            </a>
+            . I will get back to you as soon as I can.
+          </MessageBodyText>
           <FormControl>
             <FormLabel htmlFor="name">Name</FormLabel>
             <FormInput
@@ -168,10 +191,20 @@ export default () => {
         <ImageWrapper>
           <MessageImage role="img" aria-labelledby="message-image" />
         </ImageWrapper>
-      </Message>
+      </MessageSection>
     </MessageWrapper>
   )
 }
+
+const MessageBodyText = styled(PageBodyText)`
+  margin-bottom: ${SPACING[3]};
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`
 
 const LightErrorText = styled(ErrorText)`
   color: #e47a7a;
@@ -181,7 +214,7 @@ const LightSuccessText = styled(SuccessText)`
   color: #7ce47a;
 `
 
-const Message = styled.section`
+const MessageSection = styled.section`
   ${maxWidthContainer};
   padding: ${SPACING[7]} ${SPACING[4]};
   display: flex;
@@ -190,8 +223,7 @@ const Message = styled.section`
   z-index: 1;
   @media screen and (min-width: ${BREAKPOINTS.SM}) {
     flex-direction: row;
-    padding-top: ${SPACING[8]};
-    padding-bottom: ${SPACING[9]};
+    padding-bottom: ${SPACING[8]};
   }
 `
 
@@ -216,10 +248,9 @@ const ImageWrapper = styled.div`
 
 const MessageForm = styled.form`
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   @media screen and (min-width: ${BREAKPOINTS.SM}) {
     width: auto;
-    max-width: initial;
     flex-grow: 1;
   }
 `

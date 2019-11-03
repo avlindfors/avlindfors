@@ -14,8 +14,9 @@ const buttonShared = props => css`
   outline: none;
   border: none;
   font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-weight: ${WEIGHTS.MEDIUM};
+  font-weight: ${WEIGHTS.REGULAR};
   background: ${props.background || colors.accent.main};
   ${FONTSIZE[2]};
   border-radius: ${borderRadius};
@@ -23,6 +24,7 @@ const buttonShared = props => css`
   padding: ${SPACING[3]};
   cursor: pointer;
   transition: ${animationDurations.normal} ease;
+  min-width: 100px;
   &:not(:disabled) {
     &:hover {
       background: ${colors.accent.dark};

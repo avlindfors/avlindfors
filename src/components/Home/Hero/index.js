@@ -1,11 +1,13 @@
 /** @jsx jsx  */
 import styled from "@emotion/styled"
+import { Link } from "gatsby"
 import { jsx } from "@emotion/core"
+
 import ArrowIcon from "../../../assets/icons/arrow.inline.svg"
 
 import PersonalizeImage from "../../../assets/images/undraw-personalize.inline.svg"
 
-import { LinkButton } from "../../Button"
+import { LinkButton, SecondaryLinkButton } from "../../Button"
 import { maxWidthContainer, headerShared } from "../../../styles/theme"
 import {
   colors,
@@ -37,6 +39,9 @@ export default () => {
           </PageBodyText>
           <RightAligned>
             <LinkButton to="/#features">Read more</LinkButton>
+            <MarginSecondaryLinkButton to="/#message-section">
+              Contact me
+            </MarginSecondaryLinkButton>
           </RightAligned>
         </TextSection>
         <ImageSection>
@@ -51,6 +56,9 @@ export default () => {
   )
 }
 
+const MarginSecondaryLinkButton = styled(SecondaryLinkButton)`
+  margin-left: ${SPACING[3]};
+`
 const AnimatedArrowIcon = styled(ArrowIcon)`
   @keyframes bounce {
     0% {
@@ -154,9 +162,8 @@ const PersonImage = styled(PersonalizeImage)`
 
 export const PageSubtitle = styled.p`
   ${FONTSIZE[3]};
-  font-weight: ${WEIGHTS.MEDIUM};
   letter-spacing: 0.06em;
-  margin-bottom: ${SPACING[5]};
+  margin-bottom: ${SPACING[4]};
   line-height: 150%;
 `
 
@@ -164,7 +171,8 @@ export const PageBodyText = styled.p`
   ${FONTSIZE[3]};
   letter-spacing: 0.06em;
   line-height: 160%;
-  margin-bottom: ${SPACING[6]};
+  margin-bottom: ${SPACING[5]};
+  font-weight: ${WEIGHTS.THIN};
 `
 
 const RightAligned = styled.div`

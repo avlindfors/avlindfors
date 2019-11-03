@@ -1,6 +1,8 @@
 import React from "react"
 import { Link } from "gatsby"
 import styled from "@emotion/styled"
+import { StaticQuery, graphql } from "gatsby"
+
 import { maxWidthContainer } from "../../styles/theme"
 import { colors, SPACING, FONTSIZE, BREAKPOINTS } from "../../styles/variables"
 
@@ -16,123 +18,140 @@ import GithubIcon from "../../assets/icons/github.inline.svg"
 import TwitterIcon from "../../assets/icons/twitter.inline.svg"
 import LinkedinIcon from "../../assets/icons/linkedin.inline.svg"
 
+const query = graphql`
+  query FooterQuery {
+    overviewJson {
+      email
+      phoneNumber
+      location
+    }
+  }
+`
+
 export default () => (
-  <>
-    <NewsLetter />
-    <Wrapper>
-      <Footer>
-        <LogoAndSocialContainer>
-          <LogoSection>
-            <LogoWithText />
-          </LogoSection>
-          <SocialSection>
-            <SocialIcon>
-              <a
-                href="https://www.linkedin.com/in/alexander-lindfors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <LinkedinIcon />
-              </a>
-            </SocialIcon>
-            <SocialIcon>
-              <a
-                href="https://www.github.com/alindfor"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <GithubIcon />
-              </a>
-            </SocialIcon>
-            <SocialIcon>
-              <a
-                href="https://www.twitter.com/a_lindfors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <TwitterIcon />
-              </a>
-            </SocialIcon>
-          </SocialSection>
-        </LogoAndSocialContainer>
-        <LinkSection>
-          <ContactSection>
-            <Address>
-              <SectionTitle>Contact</SectionTitle>
-              <ContactList>
-                <ContactItem>
-                  <IconWrapper>
-                    <EmailIcon />
-                  </IconWrapper>
-                  <ContactBody>
-                    <Mail
-                      href="mailto:alex@avlindfors.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      alex@avlindfors.com
-                    </Mail>
-                  </ContactBody>
-                </ContactItem>
-                <ContactItem>
-                  <IconWrapper>
-                    <PhoneIcon />
-                  </IconWrapper>
-                  <ContactBody>+8180 4989 6399</ContactBody>
-                </ContactItem>
-                <ContactItem>
-                  <IconWrapper>
-                    <LocationIcon />
-                  </IconWrapper>
-                  <ContactBody>Tokyo, Japan</ContactBody>
-                </ContactItem>
-              </ContactList>
-            </Address>
-          </ContactSection>
-          <PagesSection>
-            <nav>
-              <SectionTitle>Pages</SectionTitle>
-              <PagesList>
-                <PagesItem>
-                  <LinkBody>
-                    <NavLink to="/">Home</NavLink>
-                  </LinkBody>
-                </PagesItem>
-
-                <PagesItem>
-                  <LinkBody>
-                    <NavLink to="/resume">Resume</NavLink>
-                  </LinkBody>
-                </PagesItem>
-
-                <PagesItem>
-                  <LinkBody>
-                    <NavLink to="/blog">Blog</NavLink>
-                  </LinkBody>
-                </PagesItem>
-              </PagesList>
-            </nav>
-          </PagesSection>
-        </LinkSection>
-      </Footer>
-      <FullWidthSocialFooter>
-        <SocialFooterContent>
-          <CopyrightNotice>
-            <Copyright>Alexander Lindfors © 2019</Copyright>
-            <ItalicDimText>
-              Crafted lovingly with Gatsby, React and Node
-            </ItalicDimText>
-          </CopyrightNotice>
-        </SocialFooterContent>
-      </FullWidthSocialFooter>
-    </Wrapper>
-  </>
+  <StaticQuery query={query} render={data => <Footer data={data} />} />
 )
+
+function Footer({ data: { overviewJson } }) {
+  const { email, phoneNumber, location } = overviewJson
+  return (
+    <>
+      <NewsLetter />
+      <Wrapper>
+        <FooterSection>
+          <LogoAndSocialContainer>
+            <LogoSection>
+              <LogoWithText />
+            </LogoSection>
+            <SocialSection>
+              <SocialIcon>
+                <a
+                  href="https://www.linkedin.com/in/alexander-lindfors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <LinkedinIcon />
+                </a>
+              </SocialIcon>
+              <SocialIcon>
+                <a
+                  href="https://www.github.com/alindfor"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <GithubIcon />
+                </a>
+              </SocialIcon>
+              <SocialIcon>
+                <a
+                  href="https://www.twitter.com/a_lindfors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <TwitterIcon />
+                </a>
+              </SocialIcon>
+            </SocialSection>
+          </LogoAndSocialContainer>
+          <LinkSection>
+            <ContactSection>
+              <Address>
+                <SectionTitle>Contact</SectionTitle>
+                <ContactList>
+                  <ContactItem>
+                    <IconWrapper>
+                      <EmailIcon />
+                    </IconWrapper>
+                    <ContactBody>
+                      <Mail
+                        href={`mailto:${email}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {email}
+                      </Mail>
+                    </ContactBody>
+                  </ContactItem>
+                  <ContactItem>
+                    <IconWrapper>
+                      <PhoneIcon />
+                    </IconWrapper>
+                    <ContactBody>{phoneNumber}</ContactBody>
+                  </ContactItem>
+                  <ContactItem>
+                    <IconWrapper>
+                      <LocationIcon />
+                    </IconWrapper>
+                    <ContactBody>{location}</ContactBody>
+                  </ContactItem>
+                </ContactList>
+              </Address>
+            </ContactSection>
+            <PagesSection>
+              <nav>
+                <SectionTitle>Pages</SectionTitle>
+                <PagesList>
+                  <PagesItem>
+                    <LinkBody>
+                      <NavLink to="/">Home</NavLink>
+                    </LinkBody>
+                  </PagesItem>
+
+                  <PagesItem>
+                    <LinkBody>
+                      <NavLink to="/resume">Resume</NavLink>
+                    </LinkBody>
+                  </PagesItem>
+
+                  <PagesItem>
+                    <LinkBody>
+                      <NavLink to="/blog">Blog</NavLink>
+                    </LinkBody>
+                  </PagesItem>
+                </PagesList>
+              </nav>
+            </PagesSection>
+          </LinkSection>
+        </FooterSection>
+        <FullWidthSocialFooter>
+          <SocialFooterContent>
+            <CopyrightNotice>
+              <Copyright>Alexander Lindfors © 2019</Copyright>
+              <ItalicDimText>
+                Crafted lovingly with Gatsby, React and Node
+              </ItalicDimText>
+            </CopyrightNotice>
+          </SocialFooterContent>
+        </FullWidthSocialFooter>
+      </Wrapper>
+    </>
+  )
+}
 
 const Wrapper = styled.footer`
   background: ${colors.main.footer.light};
 `
-const Footer = styled.section`
+const FooterSection = styled.section`
   ${maxWidthContainer};
   padding: ${SPACING[7]} ${SPACING[4]};
   display: flex;

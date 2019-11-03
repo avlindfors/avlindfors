@@ -1,6 +1,8 @@
 import React from "react"
 import styled from "@emotion/styled"
 import { css } from "@emotion/core"
+import { StaticQuery, graphql } from "gatsby"
+
 import Avatar from "../../../assets/images/undraw-avatar.inline.svg"
 import { maxWidthContainer, headerShared } from "../../../styles/theme"
 import {
@@ -14,9 +16,32 @@ import {
 import File from "../../../assets/icons/file.inline.svg"
 import ResumePDF from "../../../assets/files/resume.pdf"
 
-export default () => {
+const query = graphql`
+  query {
+    overviewJson {
+      degree
+      email
+      languages
+      location
+      toolkit {
+        main
+        other
+      }
+    }
+  }
+`
+
+export default () => (
+  <StaticQuery
+    query={query}
+    render={({ overviewJson }) => <ResumeHeader overview={overviewJson} />}
+  />
+)
+
+function ResumeHeader({ overview }) {
+  const { degree, location, email, languages, toolkit } = overview
   return (
-    <ResumeHeader>
+    <ResumeHeaderContainer>
       <AvatarContainer>
         <AvatarImage role="img" aria-labelledby="avatar-image" />
         <DownloadLink
@@ -37,40 +62,32 @@ export default () => {
         </SummaryTitleContainer>
         <TopSummary>
           <BasicSummary>
-            <SummaryData>
+            <span>
               <SummaryDataTitle>Degree</SummaryDataTitle>
-              <MarginBottomTableText>
-                BSc in Computer Science
-              </MarginBottomTableText>
-            </SummaryData>
-            <SummaryData>
+              <MarginBottomTableText>{degree}</MarginBottomTableText>
+            </span>
+            <span>
               <SummaryDataTitle>Location</SummaryDataTitle>
-              <MarginBottomTableText>Tokyo, Japan</MarginBottomTableText>
-            </SummaryData>
-            <SummaryData>
+              <MarginBottomTableText>{location}</MarginBottomTableText>
+            </span>
+            <span>
               <SummaryDataTitle>Email</SummaryDataTitle>
-              <MarginBottomTableText>alex@avlindfors.com</MarginBottomTableText>
-            </SummaryData>
+              <MarginBottomTableText>{email}</MarginBottomTableText>
+            </span>
           </BasicSummary>
           <LanguageSummary>
             <SummaryDataTitle>Languages</SummaryDataTitle>
-            <MarginBottomTableText>
-              Swedish, English, Japanese
-            </MarginBottomTableText>
+            <MarginBottomTableText>{languages}</MarginBottomTableText>
           </LanguageSummary>
         </TopSummary>
         <section>
           <SummaryDataTitle>Toolkit</SummaryDataTitle>
-          <MarginBottomTableText>
-            React, JavaScript, HTML, CSS, Node, Express, Python, Erlang, Java
-          </MarginBottomTableText>
-          <MarginBottomTableText>
-            MongoDB, Firebase, SQL, Docker, GitHub, AWS
-          </MarginBottomTableText>
+          <MarginBottomTableText>{toolkit.main}</MarginBottomTableText>
+          <MarginBottomTableText>{toolkit.other}</MarginBottomTableText>
           <AccentedMoreText>& more</AccentedMoreText>
         </section>
       </SummaryContainer>
-    </ResumeHeader>
+    </ResumeHeaderContainer>
   )
 }
 
@@ -88,12 +105,13 @@ const TableText = styled.p`
   ${FONTSIZE[3]};
   color: #ffffff;
   letter-spacing: 0.1em;
+  font-weight: ${WEIGHTS.THIN};
   @media screen and (min-width: ${BREAKPOINTS.XS}) {
     ${FONTSIZE[4]};
   }
 `
 const MarginBottomTableText = styled(TableText)`
-  margin-bottom: ${SPACING[2]};
+  margin-bottom: ${SPACING[3]};
 `
 const TopSummary = styled.div`
   display: flex;
@@ -107,7 +125,7 @@ const titleText = css`
   font-family: "Poppins", sans-serif;
   letter-spacing: 0.1em;
 `
-const ResumeHeader = styled.div`
+const ResumeHeaderContainer = styled.div`
   ${maxWidthContainer};
   display: flex;
   flex-direction: column;
@@ -212,14 +230,10 @@ const B = styled.b`
   font-family: inherit;
 `
 
-const SummaryData = styled.span``
 const SummaryDataTitle = styled.h5`
-  ${FONTSIZE[5]};
   ${titleText};
+  ${FONTSIZE[4]};
   font-weight: ${WEIGHTS.REGULAR};
   color: #d8dbf5;
   margin-bottom: ${SPACING[1]};
-  @media screen and (min-width: ${BREAKPOINTS.XS}) {
-    ${FONTSIZE[6]};
-  }
 `
