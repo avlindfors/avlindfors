@@ -55,7 +55,7 @@ function Footer({ data: { overviewJson } }) {
               </SocialIcon>
               <SocialIcon>
                 <a
-                  href="https://www.github.com/alindfor"
+                  href="https://www.github.com/avlindfors"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

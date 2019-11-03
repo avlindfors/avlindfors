@@ -31,7 +31,7 @@ export default () => {
       <BonusContainer>
         <TipText>
           <Bold>FOR THE CURIOUS: </Bold> Check out the source code for this
-          project on <a href="https://www.github.com/alindfor">GitHub</a>
+          project on <a href="https://www.github.com/avlindfors/avlindfors">GitHub</a>
         </TipText>
       </BonusContainer>
     </Quote>
