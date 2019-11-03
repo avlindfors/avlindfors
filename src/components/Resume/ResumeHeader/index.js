@@ -71,7 +71,15 @@ function ResumeHeader({ overview }) {
             </span>
             <span>
               <SummaryDataTitle>Email</SummaryDataTitle>
-              <MarginBottomTableText>{email}</MarginBottomTableText>
+              <MarginBottomTableText>
+                <a
+                  href={`mailto:${email}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {email}
+                </a>
+              </MarginBottomTableText>
             </span>
           </BasicSummary>
           <LanguageSummary>
@@ -102,13 +110,29 @@ const AccentedMoreText = styled.p`
 
 const TableText = styled.p`
   ${FONTSIZE[3]};
-  color: #ffffff;
   letter-spacing: 0.1em;
-  font-weight: ${WEIGHTS.THIN};
+  color: #ffffff;
+  font-weight: ${WEIGHTS.REGULAR};
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
   @media screen and (min-width: ${BREAKPOINTS.XS}) {
     ${FONTSIZE[4]};
   }
 `
+
+const SummaryDataTitle = styled.h5`
+  color: #d8dbf5;
+  ${titleText};
+  ${FONTSIZE[3]};
+  font-weight: ${WEIGHTS.REGULAR};
+  margin-bottom: ${SPACING[1]};
+  letter-spacing: 0.1em;
+`
+
 const MarginBottomTableText = styled(TableText)`
   margin-bottom: ${SPACING[3]};
 `
@@ -227,12 +251,4 @@ const SummaryProfession = styled.p`
 const B = styled.b`
   font-weight: 400;
   font-family: inherit;
-`
-
-const SummaryDataTitle = styled.h5`
-  ${titleText};
-  ${FONTSIZE[4]};
-  font-weight: ${WEIGHTS.REGULAR};
-  color: #d8dbf5;
-  margin-bottom: ${SPACING[1]};
 `
