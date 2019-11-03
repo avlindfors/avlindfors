@@ -245,7 +245,7 @@ export default () => {
               <FeatureBody>
                 As an engineer, growing my personal and soft skills are as
                 important to me as learning more about my profession. I want to
-                take an active part in my growth and work towards mutual succes,
+                take an active part in my growth and work towards mutual success,
                 not only for myself but for those around me.
               </FeatureBody>
             </TextSection>
