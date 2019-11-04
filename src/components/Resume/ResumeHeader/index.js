@@ -98,6 +98,11 @@ function ResumeHeader({ overview }) {
   )
 }
 
+const titleText = css`
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.1em;
+`
+
 const AccentedMoreText = styled.p`
   ${FONTSIZE[5]};
   color: ${colors.accent.main};
@@ -144,10 +149,7 @@ const BasicSummary = styled.div`
   margin-right: 100px;
 `
 const LanguageSummary = styled.div``
-const titleText = css`
-  font-family: "Poppins", sans-serif;
-  letter-spacing: 0.1em;
-`
+
 const ResumeHeaderContainer = styled.div`
   ${maxWidthContainer};
   display: flex;
