@@ -155,6 +155,7 @@ export default () => {
     design: cookies[LIKES_KEY] ? cookies[LIKES_KEY]["design"] > 0 : false,
   }
 
+  const shouldShowLikes = false
   return (
     <Skills id="features">
       <MaxWidthContainer>
@@ -171,15 +172,17 @@ export default () => {
               using Gatsby to create a blazing fast static site.
             </BodyText>
 
-            <CardLikes
-              onClick={handleLike("frontend")}
-              disabled={!isLikeAllowed}
-            >
-              <HeartContainer>
-                {hasLiked["frontend"] ? <HeartIcon /> : <HeartOutlineIcon />}
-              </HeartContainer>
-              <LikesCounter>{formatLikesCount(frontendLikes)}</LikesCounter>
-            </CardLikes>
+            {shouldShowLikes && (
+              <CardLikes
+                onClick={handleLike("frontend")}
+                disabled={!isLikeAllowed}
+              >
+                <HeartContainer>
+                  {hasLiked["frontend"] ? <HeartIcon /> : <HeartOutlineIcon />}
+                </HeartContainer>
+                <LikesCounter>{formatLikesCount(frontendLikes)}</LikesCounter>
+              </CardLikes>
+            )}
           </Card>
           <Card>
             <CardTitle>Back end</CardTitle>
@@ -191,15 +194,17 @@ export default () => {
               project I built an Express server to power likes, sending messages
               and subscribing.
             </BodyText>
-            <CardLikes
-              onClick={handleLike("backend")}
-              disabled={!isLikeAllowed}
-            >
-              <HeartContainer>
-                {hasLiked["backend"] ? <HeartIcon /> : <HeartOutlineIcon />}
-              </HeartContainer>
-              <LikesCounter>{formatLikesCount(backendLikes)}</LikesCounter>
-            </CardLikes>
+            {shouldShowLikes && (
+              <CardLikes
+                onClick={handleLike("backend")}
+                disabled={!isLikeAllowed}
+              >
+                <HeartContainer>
+                  {hasLiked["backend"] ? <HeartIcon /> : <HeartOutlineIcon />}
+                </HeartContainer>
+                <LikesCounter>{formatLikesCount(backendLikes)}</LikesCounter>
+              </CardLikes>
+            )}
           </Card>
           <Card>
             <CardTitle>Design</CardTitle>
@@ -211,12 +216,17 @@ export default () => {
               For this project I've used Figma to design the website's logo and
               layout.
             </BodyText>
-            <CardLikes onClick={handleLike("design")} disabled={!isLikeAllowed}>
-              <HeartContainer>
-                {hasLiked["design"] ? <HeartIcon /> : <HeartOutlineIcon />}
-              </HeartContainer>
-              <LikesCounter>{formatLikesCount(designLikes)}</LikesCounter>
-            </CardLikes>
+            {shouldShowLikes && (
+              <CardLikes
+                onClick={handleLike("design")}
+                disabled={!isLikeAllowed}
+              >
+                <HeartContainer>
+                  {hasLiked["design"] ? <HeartIcon /> : <HeartOutlineIcon />}
+                </HeartContainer>
+                <LikesCounter>{formatLikesCount(designLikes)}</LikesCounter>
+              </CardLikes>
+            )}
           </Card>
         </Cards>
         <SectionTitle color={colors.text.header.dark}>Why I do it</SectionTitle>

@@ -28,15 +28,18 @@ const query = graphql`
   }
 `
 
-export default () => (
-  <StaticQuery query={query} render={data => <Footer data={data} />} />
+export default props => (
+  <StaticQuery
+    query={query}
+    render={data => <Footer data={data} {...props} />}
+  />
 )
 
-function Footer({ data: { overviewJson } }) {
+function Footer({ data: { overviewJson }, hideNewsLetter }) {
   const { email, phoneNumber, location } = overviewJson
   return (
     <>
-      <NewsLetter />
+      {!hideNewsLetter && <NewsLetter />}
       <Wrapper>
         <FooterSection>
           <LogoAndSocialContainer>

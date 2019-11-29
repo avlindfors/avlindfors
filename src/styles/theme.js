@@ -49,7 +49,6 @@ export const BodyText = styled.p`
   ${FONTSIZE[4]};
   line-height: 1.6em;
   letter-spacing: 0.06em;
-  margin-bottom: ${SPACING[3]};
 `
 
 export const Flex = styled.div`

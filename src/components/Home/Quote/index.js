@@ -18,8 +18,7 @@ export default () => {
     <Quote>
       <MaxWidthContainer>
         <CenteredQuote>
-          I'm always looking for opportunities to learn and grow as an engineer
-          and as a person.
+          I'm always looking for opportunities to learn and grow as an engineer and as a person.
         </CenteredQuote>
         <CenteredButtons>
           <LinkButton type="button" to="#message-section">

@@ -80,7 +80,7 @@ export default () => {
             placeholder="name@example.com"
             value={email}
             onChange={handleChange}
-            disabled={isLoading}
+            disabled={true}
           />
           {error && <ErrorText>{error}</ErrorText>}
           {data && <SuccessText>{data}</SuccessText>}
@@ -217,6 +217,7 @@ const FormInput = styled.input`
   padding: 18px;
   border-radius: ${borderRadius};
   transition: ${animationDurations.fast} ease;
+  cursor: not-allowed;
   &:focus {
     border: 1px solid #abbce6;
   }

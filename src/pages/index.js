@@ -10,11 +10,11 @@ import Message from "../components/Home/Message"
 
 const IndexPage = () => (
   <CookiesProvider>
-    <Layout>
+    <Layout hideNewsLetter>
       <SEO title="Home" />
       <Hero />
       <Skills />
-      <Message />
+      {/* <Message /> */}
     </Layout>
   </CookiesProvider>
 )

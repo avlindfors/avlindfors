@@ -7,13 +7,13 @@ import globalStyles from "../../styles/globalStyles"
 import Header from "./header"
 import Footer from "./footer"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, hideNewsLetter }) => {
   return (
     <>
       <Global styles={globalStyles} />
       <Header />
       <>{children}</>
-      <Footer />
+      <Footer hideNewsLetter={hideNewsLetter} />
     </>
   )
 }
