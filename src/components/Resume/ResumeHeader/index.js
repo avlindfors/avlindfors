@@ -39,18 +39,22 @@ export default () => (
 
 function ResumeHeader({ overview }) {
   const { degree, location, email, languages, toolkit } = overview
+  const showDownloadLink = false;
+  
   return (
     <ResumeHeaderContainer>
       <AvatarContainer>
         <AvatarImage role="img" aria-labelledby="avatar-image" />
-        <DownloadLink
-          href="/alexander_lindfors_resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <DownloadText>Download as PDF</DownloadText>
-          <FileIcon />
-        </DownloadLink>
+        {showDownloadLink && (
+          <DownloadLink
+            href="/alexander_lindfors_resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <DownloadText>Download as PDF</DownloadText>
+            <FileIcon />
+          </DownloadLink>
+        )}
       </AvatarContainer>
       <SummaryContainer>
         <SummaryTitleContainer>
