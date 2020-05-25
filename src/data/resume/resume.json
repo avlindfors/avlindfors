@@ -1,12 +1,22 @@
 {
   "experience": [
     {
+      "title": "Forefront Consulting",
+      "role": "Software Engineer",
+      "location": "Stockholm, Sweden",
+      "duration": {
+        "start": "01/2020",
+        "end": "present"
+      },
+      "description": "Forefront Consulting is an agency based in Stockholm. In January I joined a development team at one of Sweden's largest grocery store chains. We develop payment solutions for the online and in-store customers; mainly using Java and the Spring Boot framework."
+    },
+    {
       "title": "TableCheck",
       "role": "Junior Software Engineer",
       "location": "Tokyo, Japan",
       "duration": {
         "start": "06/2019",
-        "end": "present"
+        "end": "12/2019"
       },
       "description": "TableCheck, based in Tokyo, provides restaurant management and reservation systems. Since June I have been part of the Front End team working mainly with React. Besides programming, the position has given me opportunities to explore other aspects of software development, such as architectural direction as well as UI design."
     },

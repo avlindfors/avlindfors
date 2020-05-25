@@ -23,7 +23,8 @@ const query = graphql`
       languages
       location
       toolkit {
-        main
+        frameworks
+        languages
         other
       }
     }
@@ -87,13 +88,14 @@ function ResumeHeader({ overview }) {
             </span>
           </BasicSummary>
           <LanguageSummary>
-            <SummaryDataTitle>Languages</SummaryDataTitle>
+            <SummaryDataTitle>Spoken Languages</SummaryDataTitle>
             <MarginBottomTableText>{languages}</MarginBottomTableText>
           </LanguageSummary>
         </TopSummary>
         <section>
-          <SummaryDataTitle>Toolkit</SummaryDataTitle>
-          <MarginBottomTableText>{toolkit.main}</MarginBottomTableText>
+          <SummaryDataTitle>Developer Toolkit</SummaryDataTitle>
+          <MarginBottomTableText>{toolkit.frameworks}</MarginBottomTableText>
+          <MarginBottomTableText>{toolkit.languages}</MarginBottomTableText>
           <MarginBottomTableText>{toolkit.other}</MarginBottomTableText>
           <AccentedMoreText>& more</AccentedMoreText>
         </section>

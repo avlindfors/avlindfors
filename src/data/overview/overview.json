@@ -5,7 +5,8 @@
   "degree": "BSc in Computer Science",
   "languages": "Swedish, English, Japanese",
   "toolkit": {
-    "main": "React, JavaScript, HTML, CSS, Node, Express, Python, Erlang, Java",
-    "other": "GraphQL, Git, Docker, Aws, Firebase, SQL, MongoDB"
+    "frameworks": "React, Spring Boot, Express, Node",
+    "languages": "JavaScript, HTML, CSS, Java, Python, Erlang",
+    "other": "Git, MongoDB, Firebase, SQL, GraphQL, Netlify, Docker, AWS"
   }
 }

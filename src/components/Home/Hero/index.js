@@ -16,9 +16,11 @@ import {
   BREAKPOINTS,
 } from "../../../styles/variables"
 
-export default () => {
+const Hero = () => {
+  const showContact = false;
+
   return (
-    <Hero>
+    <HeroSection>
       <TopSection>
         <TextSection>
           <Greeting>
@@ -39,9 +41,11 @@ export default () => {
           </PageBodyText>
           <RightAligned>
             <LinkButton to="/#features">Read more</LinkButton>
-            <MarginSecondaryLinkButton to="/#contact">
-              Contact me
-            </MarginSecondaryLinkButton>
+            {showContact && (
+              <MarginSecondaryLinkButton to="/#contact">
+                Contact me
+              </MarginSecondaryLinkButton>
+            )}
           </RightAligned>
         </TextSection>
         <ImageSection>
@@ -52,9 +56,11 @@ export default () => {
         <MoreText>Wait, there's more.</MoreText>
         <AnimatedArrowIcon />
       </MoreSection>
-    </Hero>
+    </HeroSection>
   )
 }
+
+export default Hero;
 
 const MarginSecondaryLinkButton = styled(SecondaryLinkButton)`
   margin-left: ${SPACING[3]};
@@ -103,7 +109,7 @@ export const PageTitle = styled.h1`
     ${FONTSIZE[10]};
   }
 `
-const Hero = styled.section`
+const HeroSection = styled.section`
   ${maxWidthContainer};
   padding: 0 ${SPACING[4]};
   padding-top: ${SPACING[5]};

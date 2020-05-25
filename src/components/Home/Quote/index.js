@@ -14,23 +14,35 @@ import { LinkButton } from "../../Button"
 import quoteImage from "../../../assets/images/quote.svg"
 
 export default () => {
+  const showContact = false;
+
   return (
     <Quote>
       <MaxWidthContainer>
         <CenteredQuote>
-          I'm always looking for opportunities to learn and grow as an engineer and as a person.
+          I'm always looking for opportunities to learn and grow as an engineer
+          and as a person.
         </CenteredQuote>
         <CenteredButtons>
-          <LinkButton type="button" to="#message-section">
-            GET IN TOUCH
-          </LinkButton>
+          {showContact && (
+            <LinkButton type="button" to="#contact">
+              GET IN TOUCH
+            </LinkButton>
+          )}
           <DarkHintLink to="/resume">See resume</DarkHintLink>
         </CenteredButtons>
       </MaxWidthContainer>
       <BonusContainer>
         <TipText>
           <Bold>FOR THE CURIOUS: </Bold> Check out the source code for this
-          project on <a href="https://www.github.com/avlindfors/avlindfors" target="_blank" rel="noreferrer noopener">GitHub</a>
+          project on{" "}
+          <a
+            href="https://www.github.com/avlindfors/avlindfors"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            GitHub
+          </a>
         </TipText>
       </BonusContainer>
     </Quote>
