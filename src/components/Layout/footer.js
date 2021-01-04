@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "gatsby"
 import styled from "@emotion/styled"
 import { StaticQuery, graphql } from "gatsby"
@@ -37,6 +37,14 @@ export default props => (
 
 function Footer({ data: { overviewJson }, hideNewsLetter }) {
   const { email, phoneNumber, location } = overviewJson
+
+  var [currentYear, setCurrentYear] = useState();
+  useEffect(() => {
+    if (currentYear == undefined) {
+      setCurrentYear(new Date().getFullYear())
+    }
+  }, [])
+
   return (
     <>
       {!hideNewsLetter && <NewsLetter />}
@@ -67,7 +75,7 @@ function Footer({ data: { overviewJson }, hideNewsLetter }) {
               </SocialIcon>
               <SocialIcon>
                 <a
-                  href="https://www.twitter.com/a_lindfors"
+                  href="https://www.twitter.com/avlindfors"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -139,10 +147,8 @@ function Footer({ data: { overviewJson }, hideNewsLetter }) {
         <FullWidthSocialFooter>
           <SocialFooterContent>
             <CopyrightNotice>
-              <Copyright>Alexander Lindfors © 2021</Copyright>
-              <ItalicDimText>
-                Crafted lovingly with Gatsby, React and Node
-              </ItalicDimText>
+              <Copyright>Alexander Lindfors © {currentYear || "2021"}</Copyright>
+              <ItalicDimText>Crafted lovingly with Gatsby JS</ItalicDimText>
             </CopyrightNotice>
           </SocialFooterContent>
         </FullWidthSocialFooter>

@@ -169,7 +169,7 @@ export default () => {
             <BodyText>
               I use HTML, CSS and JavaScript to create engaging user
               experiences. My framework of choice is React. This site was built
-              using Gatsby to create a blazing fast static site.
+              using Gatsby to create a fast static site.
             </BodyText>
 
             {shouldShowLikes && (
@@ -190,9 +190,7 @@ export default () => {
               <DatabaseIcon />
             </IconWrapper>
             <BodyText>
-              I use Node and Express to power my back end needs. For this
-              project I built an Express server to power likes, sending messages
-              and subscribing.
+              For my personal projects I generally use Node to power my back end needs. I use Spring Boot professionally.
             </BodyText>
             {shouldShowLikes && (
               <CardLikes
@@ -246,7 +244,7 @@ export default () => {
               <MasterplanImage role="img" aria-labelledby="curious-image" />
             </FeatureImage>
           </FeatureCard>
-          <FeatureCard background="#6C63FF" color="#E2E1FB" reverse>
+          <FeatureCard background="#6C63FF" color="#ffffff" reverse>
             <TextSection>
               <FeatureTitle>Personal growth</FeatureTitle>
               <FeatureBody>
