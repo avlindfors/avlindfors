@@ -139,7 +139,7 @@ function Footer({ data: { overviewJson }, hideNewsLetter }) {
         <FullWidthSocialFooter>
           <SocialFooterContent>
             <CopyrightNotice>
-              <Copyright>Alexander Lindfors © 2020</Copyright>
+              <Copyright>Alexander Lindfors © 2021</Copyright>
               <ItalicDimText>
                 Crafted lovingly with Gatsby, React and Node
               </ItalicDimText>
