@@ -31,13 +31,15 @@ const Hero = () => {
           </Greeting>
           <PageTitle>I'm Alexander</PageTitle>
           <PageSubtitle>
-            I’m a software engineer with a passion for UI design
+            I’m a fullstack developer with an interest in UI design
           </PageSubtitle>
           <PageBodyText>
-            I am a Swedish software enginner with an interest in UI design. I
+            I am a Swedish software enginner with a broad skillset. I
             mainly do front end work but I also enjoy working with back end
             technologies. I built this website as a work sample to show how I
-            work and what I can do.
+            work and what I do.
+            <br/><br/>
+            I love anything Sci-Fi, I like playing games and I enjoy eating and cooking food with friends and family.
           </PageBodyText>
           <RightAligned>
             <LinkButton to="/#features">Read more</LinkButton>
@@ -118,11 +120,8 @@ const HeroSection = styled.section`
   @media screen and (min-width: ${BREAKPOINTS.SM}) {
     padding-top: ${SPACING[6]};
   }
-  @media screen and (min-width: ${BREAKPOINTS.MD}) {
-    padding-top: ${SPACING[7]};
-  }
   @media screen and (min-width: ${BREAKPOINTS.LG}) {
-    padding-top: ${SPACING[6]};
+    padding-top: ${SPACING[8]};
   }
 `
 
@@ -131,7 +130,7 @@ const TopSection = styled.section`
   flex-direction: column;
   @media screen and (min-width: ${BREAKPOINTS.SM}) {
     flex-direction: row;
-    margin-bottom: ${SPACING[7]};
+    margin-bottom: ${SPACING[8]};
   }
 `
 const MoreSection = styled.section`
