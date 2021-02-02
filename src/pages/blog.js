@@ -26,7 +26,7 @@ const Blog = () => (
           This is where I will put blog posts. At some point.{" "}
         </PageSubtitle>
         <PageBodyText>
-          In the meantime you can check out my resume or sign up for
+          In the meantime you can check out my resume. If I'm looking for opportunities; sign up for
           notifications. That way you will be the first to know when this page is
           ready!
         </PageBodyText>
@@ -34,7 +34,7 @@ const Blog = () => (
           <SecondaryLinkButtonWithMargin to="/resume">
             SEE RESUME
           </SecondaryLinkButtonWithMargin>
-          <LinkButton to="/">GO HOME</LinkButton>
+          <LinkButton to="/">HOME</LinkButton>
         </RightAligned>
       </TextSection>
       <ImageSectionWithFixedMargin>

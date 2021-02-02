@@ -40,7 +40,7 @@ function Footer({ data: { overviewJson }, hideNewsLetter }) {
 
   var [currentYear, setCurrentYear] = useState();
   useEffect(() => {
-    if (currentYear == undefined) {
+    if (currentYear === undefined) {
       setCurrentYear(new Date().getFullYear())
     }
   }, [])

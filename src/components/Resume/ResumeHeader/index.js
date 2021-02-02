@@ -40,8 +40,8 @@ export default () => (
 
 function ResumeHeader({ overview }) {
   const { degree, location, email, languages, toolkit } = overview
-  const showDownloadLink = false;
-  
+  const showDownloadLink = false
+
   return (
     <ResumeHeaderContainer>
       <AvatarContainer>
@@ -93,7 +93,7 @@ function ResumeHeader({ overview }) {
           </LanguageSummary>
         </TopSummary>
         <section>
-          <SummaryDataTitle>Developer Toolkit</SummaryDataTitle>
+          <SummaryDataTitle>Main skills</SummaryDataTitle>
           <MarginBottomTableText>{toolkit.frameworks}</MarginBottomTableText>
           <MarginBottomTableText>{toolkit.languages}</MarginBottomTableText>
           <MarginBottomTableText>{toolkit.other}</MarginBottomTableText>
@@ -113,10 +113,6 @@ const AccentedMoreText = styled.p`
   ${FONTSIZE[5]};
   color: ${colors.accent.main};
   letter-spacing: 0.1em;
-  margin-bottom: ${SPACING[6]};
-  @media screen and (min-width: ${BREAKPOINTS.SM}) {
-    margin-bottom: ${SPACING[7]};
-  }
 `
 
 const TableText = styled.p`
@@ -131,14 +127,14 @@ const TableText = styled.p`
     }
   }
   @media screen and (min-width: ${BREAKPOINTS.XS}) {
-    ${FONTSIZE[4]};
+    ${FONTSIZE[5]};
   }
 `
 
 const SummaryDataTitle = styled.h5`
-  color: #d8dbf5;
+  color: #999fd2;
   ${titleText};
-  ${FONTSIZE[3]};
+  ${FONTSIZE[4]};
   font-weight: ${WEIGHTS.REGULAR};
   margin-bottom: ${SPACING[1]};
   letter-spacing: 0.1em;
@@ -160,8 +156,13 @@ const ResumeHeaderContainer = styled.div`
   ${maxWidthContainer};
   display: flex;
   flex-direction: column;
+  margin-bottom: ${SPACING[6]};
   @media screen and (min-width: ${BREAKPOINTS.XS}) {
     flex-direction: row;
+  }
+
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    margin-bottom: ${SPACING[5]};
   }
 `
 

@@ -1,8 +1,8 @@
 /* @jsx jsx */
 import styled from "@emotion/styled"
 // eslint-disable-next-line
-import { css, jsx } from "@emotion/core"
-import { colors, FONTSIZE, SPACING } from "./variables"
+import { css } from "@emotion/core"
+import { BREAKPOINTS, colors, FONTSIZE } from "./variables"
 
 export const headerShared = css`
   font-family: "Poppins", sans-serif;
@@ -49,6 +49,10 @@ export const BodyText = styled.p`
   ${FONTSIZE[4]};
   line-height: 1.6em;
   letter-spacing: 0.06em;
+  text-align: left;
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    text-align: center;
+  }
 `
 
 export const Flex = styled.div`

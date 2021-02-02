@@ -1,7 +1,7 @@
 export const colors = {
   main: {
     background: {
-      dark: "#080A1C",
+      dark: "#1B1F42",
       light: "#FAFAFF",
     },
     footer: {
@@ -9,6 +9,7 @@ export const colors = {
       dark: "#1326D2",
     },
   },
+  button: { dark: "#232655" },
   accent: {
     main: "#6C63FF",
     dark: "#5E55FC",
@@ -24,7 +25,7 @@ export const colors = {
       dark: "#161938",
     },
     nav: {
-      active: "#A19BFF",
+      active: "#6C63FF",
       idle: "#F3F3F3",
       hover: "#C6C3FE",
     },
