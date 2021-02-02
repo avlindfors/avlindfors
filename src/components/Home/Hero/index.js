@@ -6,7 +6,6 @@ import ArrowIcon from "../../../assets/icons/arrow.inline.svg"
 
 import PersonalizeImage from "../../../assets/images/undraw-personalize.inline.svg"
 
-import { LinkButton, SecondaryLinkButton } from "../../Button"
 import { maxWidthContainer, headerShared } from "../../../styles/theme"
 import {
   colors,
@@ -17,8 +16,6 @@ import {
 } from "../../../styles/variables"
 
 const Hero = () => {
-  const showContact = false;
-
   return (
     <HeroSection>
       <TopSection>
@@ -31,24 +28,21 @@ const Hero = () => {
           </Greeting>
           <PageTitle>I'm Alexander</PageTitle>
           <PageSubtitle>
-            I’m a fullstack developer with an interest in UI design
+            I’m a fullstack developer with wide interests
           </PageSubtitle>
           <PageBodyText>
-            I am a Swedish software enginner with a broad skillset. I
-            mainly do front end work but I also enjoy working with back end
-            technologies. I built this website as a work sample to show how I
-            work and what I do.
-            <br/><br/>
-            I love anything Sci-Fi, I like playing games and I enjoy eating and cooking food with friends and family.
+            I am a Swedish software enginner with a broad skillset. I enjoy
+            working in fullstack projects in an agile environment. Historically
+            I've leaned towards the frontend, using React, but lately I've also
+            found a lot of joy working with backend technologies, such as Spring
+            Boot. I built this website as a work sample to show how I work and
+            what I do.
           </PageBodyText>
-          <RightAligned>
-            <LinkButton to="/#features">Read more</LinkButton>
-            {showContact && (
-              <MarginSecondaryLinkButton to="/#contact">
-                Contact me
-              </MarginSecondaryLinkButton>
-            )}
-          </RightAligned>
+          <PageBodyText>
+            I love anything Sci-Fi, I like playing games and I enjoy playing the guitar, drawing, eating and
+            cooking food with friends and family. Read on to learn more about me
+            and how I work.
+          </PageBodyText>
         </TextSection>
         <ImageSection>
           <PersonImage role="img" aria-labelledby="welcome-image" />
@@ -62,12 +56,8 @@ const Hero = () => {
   )
 }
 
-export default Hero;
+export default Hero
 
-const MarginSecondaryLinkButton = styled(SecondaryLinkButton)`
-  margin-left: ${SPACING[3]};
-  text-decoration: none;
-`
 const AnimatedArrowIcon = styled(ArrowIcon)`
   @keyframes bounce {
     0% {
@@ -82,18 +72,21 @@ const AnimatedArrowIcon = styled(ArrowIcon)`
     }
   }
   animation: bounce 2s infinite ease-in-out;
+  path {
+    fill: ${colors.accent.main};
+  }
 `
 
 const Greeting = styled.p`
-  ${FONTSIZE[5]};
+  ${FONTSIZE[6]};
   letter-spacing: 0.06em;
   font-weight: ${WEIGHTS.SEMI_BOLD};
-  color: #a9acd1;
+  color: ${colors.main};
   display: flex;
   align-items: center;
   margin-bottom: ${SPACING[1]};
   @media screen and (min-width: ${BREAKPOINTS.SM}) {
-    margin-bottom: 0;
+    margin-bottom: ${SPACING[2]};
   }
 `
 
@@ -107,6 +100,9 @@ export const PageTitle = styled.h1`
   ${FONTSIZE[7]};
   font-weight: ${WEIGHTS.REGULAR};
   line-height: 130%;
+  color: ${colors.accent.main};
+
+  margin-bottom: ${SPACING[1]};
   @media screen and (min-width: ${BREAKPOINTS.SM}) {
     ${FONTSIZE[10]};
   }
@@ -121,7 +117,7 @@ const HeroSection = styled.section`
     padding-top: ${SPACING[6]};
   }
   @media screen and (min-width: ${BREAKPOINTS.LG}) {
-    padding-top: ${SPACING[8]};
+    padding-top: ${SPACING[7]};
   }
 `
 
@@ -130,7 +126,7 @@ const TopSection = styled.section`
   flex-direction: column;
   @media screen and (min-width: ${BREAKPOINTS.SM}) {
     flex-direction: row;
-    margin-bottom: ${SPACING[8]};
+    margin-bottom: ${SPACING[5]};
   }
 `
 const MoreSection = styled.section`
@@ -143,21 +139,23 @@ const MoreSection = styled.section`
 `
 
 export const TextSection = styled.section`
-  margin-bottom: ${SPACING[7]};
+  margin-bottom: ${SPACING[3]};
   @media screen and (min-width: ${BREAKPOINTS.XS}) {
     margin-bottom: 0;
-    flex-basis: 50%;
+    flex-basis: 100%;
   }
 `
 
 export const ImageSection = styled.section`
   margin-bottom: ${SPACING[7]};
+  display: none;
   @media screen and (min-width: ${BREAKPOINTS.SM}) {
     flex-basis: 50%;
     margin-bottom: 0;
     margin-left: ${SPACING[7]};
     display: flex;
     align-items: center;
+    visibility: hidden;
   }
 `
 
@@ -167,25 +165,22 @@ const PersonImage = styled(PersonalizeImage)`
 `
 
 export const PageSubtitle = styled.p`
-  ${FONTSIZE[3]};
+  ${FONTSIZE[6]};
   letter-spacing: 0.06em;
-  margin-bottom: ${SPACING[4]};
+  margin-bottom: ${SPACING[5]};
   line-height: 150%;
+  font-weight: ${WEIGHTS.SEMI_BOLD};
 `
 
 export const PageBodyText = styled.p`
-  ${FONTSIZE[3]};
+  ${FONTSIZE[6]};
   letter-spacing: 0.06em;
   line-height: 160%;
+  font-weight: ${WEIGHTS.REGULAR};
   margin-bottom: ${SPACING[5]};
-  font-weight: ${WEIGHTS.THIN};
-`
-
-const RightAligned = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+  &:last-of-type {
+    margin-bottom: ${SPACING[7]};
+  }
 `
 
 const MoreText = styled.p`

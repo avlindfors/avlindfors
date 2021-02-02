@@ -63,7 +63,6 @@ export default () => {
 }
 
 const LogoAndIconWrapper = styled.div`
-  background: ${colors.main.background.dark};
   width: 100%;
   display: flex;
   align-items: center;
@@ -150,6 +149,7 @@ const NavContainer = styled.nav`
   z-index: -1;
   padding-top: ${SPACING[4]};
   @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    background: none;
     position: initial;
     opacity: 1;
     pointer-events: all;

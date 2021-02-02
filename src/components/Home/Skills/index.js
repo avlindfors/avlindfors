@@ -21,9 +21,6 @@ import {
 // Icons
 import HeartIcon from "../../../assets/icons/heart.inline.svg"
 import HeartOutlineIcon from "../../../assets/icons/heart-outline.inline.svg"
-import DesktopIcon from "../../../assets/icons/desktop.inline.svg"
-import DatabaseIcon from "../../../assets/icons/server.inline.svg"
-import DesignIcon from "../../../assets/icons/pencil-ruler.inline.svg"
 
 // Card Images
 import MasterplanImage from "../../../assets/images/undraw-masterplan.inline.svg"
@@ -159,13 +156,31 @@ export default () => {
   return (
     <Skills id="features">
       <MaxWidthContainer>
-        <SectionTitle color={colors.text.header.dark}>What I do</SectionTitle>
+        <SectionTitle color={colors.accent.dark}>What I do</SectionTitle>
         <Cards>
           <Card>
+            <CardTitle>Back end</CardTitle>
+            <TitleSeparator />
+            <BodyText>
+              I use Spring Boot to power my backend needs. I take great care to
+              promote reusable and easily testable code. I have experience with
+              databases and Kafka.
+            </BodyText>
+            {shouldShowLikes && (
+              <CardLikes
+                onClick={handleLike("backend")}
+                disabled={!isLikeAllowed}
+              >
+                <HeartContainer>
+                  {hasLiked["backend"] ? <HeartIcon /> : <HeartOutlineIcon />}
+                </HeartContainer>
+                <LikesCounter>{formatLikesCount(backendLikes)}</LikesCounter>
+              </CardLikes>
+            )}
+          </Card>
+          <Card>
             <CardTitle>Front end</CardTitle>
-            <IconWrapper>
-              <DesktopIcon />
-            </IconWrapper>
+            <TitleSeparator />
             <BodyText>
               I use HTML, CSS and JavaScript to create engaging user
               experiences. My framework of choice is React. This site was built
@@ -185,30 +200,8 @@ export default () => {
             )}
           </Card>
           <Card>
-            <CardTitle>Back end</CardTitle>
-            <IconWrapper>
-              <DatabaseIcon />
-            </IconWrapper>
-            <BodyText>
-              For my personal projects I generally use Node to power my back end needs. I use Spring Boot professionally.
-            </BodyText>
-            {shouldShowLikes && (
-              <CardLikes
-                onClick={handleLike("backend")}
-                disabled={!isLikeAllowed}
-              >
-                <HeartContainer>
-                  {hasLiked["backend"] ? <HeartIcon /> : <HeartOutlineIcon />}
-                </HeartContainer>
-                <LikesCounter>{formatLikesCount(backendLikes)}</LikesCounter>
-              </CardLikes>
-            )}
-          </Card>
-          <Card>
             <CardTitle>Design</CardTitle>
-            <IconWrapper>
-              <DesignIcon />
-            </IconWrapper>
+            <TitleSeparator />
             <BodyText>
               I like creating UI designs before I implement a website or an app.
               For this project I've used Figma to design the website's logo and
@@ -227,7 +220,7 @@ export default () => {
             )}
           </Card>
         </Cards>
-        <SectionTitle color={colors.text.header.dark}>Why I do it</SectionTitle>
+        <SectionTitle color={colors.accent.dark}>Why I do it</SectionTitle>
         <FeatureCards>
           <FeatureCard color="#DEDFE2" background="#3F3D56">
             <TextSection>
@@ -346,26 +339,17 @@ const FeatureImage = styled.div`
     }
   }
 `
-const IconWrapper = styled.div`
+const TitleSeparator = styled.div`
   margin-bottom: ${SPACING[4]};
-  padding: 24px;
+  padding: calc(${SPACING[1]} / 2);
   border-radius: 12px;
-  background: ${colors.accent.main}09;
-
-  svg {
-    width: 45px;
-    height: 45px;
-    display: flex;
-    path {
-      color: ${colors.accent.main};
-    }
-  }
+  background: ${colors.accent.main};
 `
 const Cards = styled.section`
   display: flex;
   flex-direction: column;
+  margin-bottom: ${SPACING[7]};
   @media screen and (min-width: ${BREAKPOINTS.SM}) {
-    margin-bottom: ${SPACING[7]};
     flex-direction: row;
   }
 `
@@ -373,11 +357,16 @@ const Card = styled.div`
   background: #fff;
   border-radius: 12px;
   width: 100%;
-  margin-bottom: ${SPACING[5]};
   padding: ${SPACING[5]};
   box-shadow: 0 0 8px #00000019;
   transition: ${animationDurations.normal} ease;
+  &:not(:last-of-type) {
+    margin-bottom: ${SPACING[5]};
+  }
   @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    &:not(:last-of-type) {
+      margin-bottom: 0;
+    }
     margin-bottom: 0;
     &:not(:last-of-type) {
       margin-right: ${SPACING[3]};
@@ -393,12 +382,16 @@ const Card = styled.div`
   }
 `
 const CardTitle = styled.h5`
-  color: #343e56;
   font-family: "Poppins", sans-serif;
   ${FONTSIZE[5]}
   font-weight: ${WEIGHTS.REGULAR};
   letter-spacing: 0.06em;
-  margin-bottom: ${SPACING[4]};
+  margin-bottom: ${SPACING[2]};
+  color: ${colors.accent.main};
+  text-align:left;
+  @media screen and (min-width: ${BREAKPOINTS.SM}) {
+    text-align:center;
+  }
 `
 const HeartContainer = styled.span`
   margin-right: ${SPACING[2]};
@@ -461,10 +454,10 @@ const MaxWidthContainer = styled.div`
 
 export const SectionTitle = styled.h2`
     ${headerShared};
-    ${FONTSIZE[6]}
-    font-weight:${WEIGHTS.REGULAR};
+    ${FONTSIZE[7]}
+    font-weight:${WEIGHTS.BOLD};
     color: ${({ color }) => (color ? color : "#252E41")};
-    margin-bottom:${SPACING[5]};
+    margin-bottom:${SPACING[6]};
 `
 
 const LIKES_KEY = "__AVL_LIKES__"

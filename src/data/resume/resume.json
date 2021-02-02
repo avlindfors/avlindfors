@@ -2,7 +2,7 @@
   "experience": [
     {
       "title": "Forefront Consulting",
-      "role": "Software Engineer",
+      "role": "Software Engineering Consultant",
       "location": "Stockholm, Sweden",
       "duration": {
         "start": "01/2020",
@@ -12,11 +12,11 @@
     },
     {
       "title": "TableCheck",
-      "role": "Junior Software Engineer",
+      "role": "Software Engineer",
       "location": "Tokyo, Japan",
       "duration": {
-        "start": "06/2019",
-        "end": "12/2019"
+        "start": "2019",
+        "end": "2019"
       },
       "description": "TableCheck, based in Tokyo, provides restaurant management and reservation systems. I was part of the Front End team working mainly with React and Elixir. Besides programming, the position has given me opportunities to explore other aspects of software development, such as architectural direction as well as UI design."
     },
@@ -25,8 +25,8 @@
       "role": "Erlang Developer",
       "location": "Stockholm, Sweden",
       "duration": {
-        "start": "10/2017",
-        "end": "04/2018"
+        "start": "2017",
+        "end": "2018"
       },
       "description": "Erlang Solutons is an Erlang consultancy firm with offices around the world. I mainly worked on MongooseIM, an open-source, massively distributed XMPP messaging platform maintained by the company, using Erlang and related technologies."
     },
@@ -35,8 +35,8 @@
       "role": "Software Engineering Intern",
       "location": "Stockholm, Sweden",
       "duration": {
-        "start": "06/2017",
-        "end": "10/2017"
+        "start": "2017",
+        "end": "2017"
       },
       "description": "Ericsson is a world-leading developer and manufacturer of mobile network solutions. Using the scripting language Expect, I was tasked to create an automated testing framework for one of the cloud functions powering the future 5G mobile networks. I also acted as a contact between teams; holding presentations and teaching sessions to keep everyone up to speed."
     }
@@ -48,8 +48,8 @@
       "role": "BSc in Computer Science",
       "location": "Stockholm, Sweden",
       "duration": {
-        "start": "08/2014",
-        "end": "06/2017"
+        "start": "2014",
+        "end": "2017"
       },
       "description": "The program is a general Software Engineering program with emphasis on team work and project management. Besides the course classes I also took courses in Human Computer Interaction and Advanced Computer Storage Paradigms."
     },
@@ -58,8 +58,8 @@
       "role": "Japanese Language School",
       "location": "Tokyo, Japan",
       "duration": {
-        "start": "10/2018",
-        "end": "07/2019"
+        "start": "2018",
+        "end": "2019"
       },
       "description": "I moved to Japan to start learning Japanese at a Japanese Language School. I took 10 months of full time Japanese classes before I found a job and started working."
     }

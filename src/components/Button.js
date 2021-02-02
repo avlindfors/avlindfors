@@ -48,7 +48,18 @@ export const HintButton = styled(PrimaryButton)`
 
 export const LinkButton = styled(Link)`
   ${buttonShared};
+  ${FONTSIZE[4]};
   text-decoration: none;
+  background-color: ${colors.button.dark};
+  color: ${colors.accent.dark};
+  font-weight: ${WEIGHTS.SEMI_BOLD};
+  text-transform: none;
+  padding: ${SPACING[4]} ${SPACING[5]};
+  &:not(:disabled) {
+    &:hover {
+      background: #31356C;
+    }
+  }
 `
 
 export const SecondaryLinkButton = styled(LinkButton)`

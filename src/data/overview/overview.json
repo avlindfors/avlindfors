@@ -6,7 +6,7 @@
   "languages": "Swedish, English, Japanese",
   "toolkit": {
     "frameworks": "React, Spring Boot, Express, Node",
-    "languages": "JavaScript, HTML, CSS, Java, Python, Erlang",
-    "other": "Git, MongoDB, Firebase, SQL, GraphQL, Netlify, Docker, AWS"
+    "languages": "JavaScript, Java, HTML, CSS, Python, Erlang",
+    "other": "Git, Docker, Kafka, MongoDB, SQL, Firebase, GraphQL, Netlify, AWS"
   }
 }
