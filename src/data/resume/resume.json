@@ -1,14 +1,24 @@
 {
   "experience": [
     {
+      "title": "Alphadev",
+      "role": "Software Engineering Consultant",
+      "location": "Stockholm, Sweden",
+      "duration": {
+        "start": "05/2021",
+        "end": "present"
+      },
+      "description": "Alphadev is an agency based in Stockholm. I am on a full-stack developer assignment for a large telecom company. My team develops retail solutions and systems to be used by sales people in different channels. Main technologies are Spring Boot and React."
+    },
+    {
       "title": "Forefront Consulting",
       "role": "Software Engineering Consultant",
       "location": "Stockholm, Sweden",
       "duration": {
         "start": "01/2020",
-        "end": "present"
+        "end": "05/2021"
       },
-      "description": "Forefront Consulting is an agency based in Stockholm. I'm on assignment at one of Sweden's largest grocery store chains. We develop payment solutions for online and in-store customers; mainly using Java and the Spring Boot framework."
+      "description": "During my time at Forefront Consulting I had an assignment at one of Sweden's largest grocery store chains. We developed payment solutions for online and in-store customers; mainly using Java and the Spring Boot framework."
     },
     {
       "title": "TableCheck",
