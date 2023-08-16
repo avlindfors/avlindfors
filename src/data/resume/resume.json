@@ -1,6 +1,16 @@
 {
   "experience": [
     {
+      "title": "avlindfors",
+      "role": "Software Engineering Consultant",
+      "location": "Earth",
+      "duration": {
+        "start": "09/2022",
+        "end": "present"
+      },
+      "description": "I founded my one-man consultancy company. Building stuff on the web makes me happy. I'm taking clients in Sweden and all over the world."
+    },
+    {
       "title": "Alphadev",
       "role": "Software Engineering Consultant",
       "location": "Stockholm, Sweden",
